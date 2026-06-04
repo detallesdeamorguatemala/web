@@ -1,989 +1,2996 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Detalles de Amor | Regalos con corazón</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    :root {
-      --c-bg:        #fdf8f4;
-      --c-surface:   #ffffff;
-      --c-rose:      #e8b4bc;
-      --c-rose-deep: #c4788a;
-      --c-lila:      #c9b8e8;
-      --c-lila-deep: #9b7dc8;
-      --c-gold:      #d4a76a;
-      --c-text:      #2c1f26;
-      --c-muted:     #9a7f87;
-      --c-border:    #f0dfe5;
-      --c-error:     #d4726a;
-      --c-success:   #7ab89a;
-      --shadow-sm:   0 2px 12px rgba(44,31,38,.06);
-      --shadow-md:   0 8px 32px rgba(44,31,38,.10);
-      --shadow-lg:   0 20px 60px rgba(44,31,38,.14);
-      --r-sm:  12px;
-      --r-md:  20px;
-      --r-lg:  32px;
-      --r-xl:  48px;
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body:    'DM Sans', system-ui, sans-serif;
-      --nav-h: 68px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Detalles de Amor | Regalos con corazón – Guatemala</title>
+    <meta name="description"
+        content="Tienda de regalos románticos en Guatemala. Globos, peluches, detalles únicos y ropa especial. Entrega a domicilio. ¡Sorprende a quien amás!">
+    <meta name="keywords"
+        content="regalos Guatemala, globos metalizados Guatemala, peluches regalo, detalles románticos, regalos San Valentín Guatemala, tienda regalos online Guatemala">
+    <meta name="author" content="Detalles de Amor">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://detallesdeamor.gt/">
 
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--c-bg);
-      color: var(--c-text);
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .018;
-      z-index: 9999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--c-lila); border-radius: 10px; }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://detallesdeamor.gt/">
+    <meta property="og:title" content="Detalles de Amor | Regalos con corazón – Guatemala">
+    <meta property="og:description"
+        content="Globos, peluches, detalles únicos y ropa romántica para celebrar cada momento especial. Entregas en Guatemala.">
+    <meta property="og:image" content="https://detallesdeamor.gt/og-image.jpg">
+    <meta property="og:locale" content="es_GT">
 
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: sticky; top: 0; z-index: 500;
-      height: var(--nav-h);
-      background: rgba(253,248,244,.92);
-      backdrop-filter: blur(18px) saturate(1.4);
-      -webkit-backdrop-filter: blur(18px) saturate(1.4);
-      border-bottom: 1px solid var(--c-border);
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0 5%;
-    }
-    .logo {
-      font-family: var(--font-display);
-      font-size: 1.65rem; font-weight: 700;
-      letter-spacing: .01em; white-space: nowrap;
-      background: linear-gradient(130deg, var(--c-rose-deep) 0%, var(--c-lila-deep) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      display: flex; align-items: center; gap: .5rem;
-    }
-    .logo-heart {
-      width: 28px; height: 28px;
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: .9rem; color: white; flex-shrink: 0;
-    }
-    .nav-cats {
-      display: flex; align-items: center; gap: .35rem;
-      flex-wrap: wrap; justify-content: center;
-    }
-    .cat-btn {
-      background: transparent; border: 1px solid transparent;
-      font-family: var(--font-body); font-size: .78rem; font-weight: 500;
-      padding: .38rem .95rem; border-radius: 50px;
-      color: var(--c-muted); cursor: pointer; transition: all .2s;
-      letter-spacing: .02em;
-    }
-    .cat-btn:hover, .cat-btn.active {
-      background: var(--c-surface); border-color: var(--c-border);
-      color: var(--c-text); box-shadow: var(--shadow-sm);
-    }
-    .cat-btn.active {
-      background: linear-gradient(120deg, rgba(232,180,188,.15), rgba(201,184,232,.2));
-      border-color: var(--c-rose); color: var(--c-rose-deep); font-weight: 600;
-    }
-    .nav-right { display: flex; align-items: center; gap: .75rem; }
-    .search-wrap { position: relative; }
-    .search-wrap i {
-      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-      color: var(--c-muted); font-size: .8rem; pointer-events: none;
-    }
-    .search-input {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 50px; padding: .45rem .9rem .45rem 2.1rem;
-      width: 200px; font-family: var(--font-body); font-size: .82rem;
-      color: var(--c-text); outline: none; transition: all .2s;
-    }
-    .search-input:focus {
-      border-color: var(--c-lila); box-shadow: 0 0 0 3px rgba(201,184,232,.25); width: 230px;
-    }
-    .search-input::placeholder { color: var(--c-muted); }
-    .cart-btn {
-      position: relative; background: var(--c-surface);
-      border: 1px solid var(--c-border); border-radius: 50px;
-      padding: .45rem 1.1rem; display: flex; align-items: center; gap: .5rem;
-      cursor: pointer; transition: all .2s; box-shadow: var(--shadow-sm);
-      font-family: var(--font-body); font-size: .82rem; font-weight: 500;
-      color: var(--c-text); white-space: nowrap;
-    }
-    .cart-btn:hover { border-color: var(--c-lila); box-shadow: var(--shadow-md); }
-    .cart-badge {
-      background: linear-gradient(135deg, var(--c-rose-deep), var(--c-lila-deep));
-      color: white; border-radius: 50px; font-size: .68rem; font-weight: 700;
-      padding: .05rem .42rem; min-width: 20px; text-align: center;
-    }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Detalles de Amor | Regalos con corazón">
+    <meta name="twitter:description" content="Regalos románticos con entrega en Guatemala. Globos, peluches y más.">
+    <meta name="twitter:image" content="https://detallesdeamor.gt/og-image.jpg">
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative; padding: 5rem 5% 4rem;
-      text-align: center; overflow: hidden;
-    }
-    .hero-deco { position: absolute; pointer-events: none; }
-    .hero-deco-1 {
-      top: -60px; right: -80px; width: 340px; height: 340px;
-      background: radial-gradient(circle, rgba(201,184,232,.22) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-deco-2 {
-      bottom: -40px; left: -60px; width: 280px; height: 280px;
-      background: radial-gradient(circle, rgba(232,180,188,.18) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 50px; padding: .3rem 1rem;
-      font-size: .73rem; font-weight: 600; color: var(--c-lila-deep);
-      letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1.4rem;
-      box-shadow: var(--shadow-sm); animation: fadeDown .6s ease both;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 7vw, 5rem);
-      font-weight: 700; line-height: 1.08; letter-spacing: -.01em;
-      margin-bottom: 1rem; animation: fadeDown .7s .1s ease both;
-    }
-    .hero h1 em {
-      font-style: italic;
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero-sub {
-      color: var(--c-muted); font-size: 1rem; max-width: 480px;
-      margin: 0 auto 2rem; line-height: 1.6; animation: fadeDown .7s .2s ease both;
-    }
-    .hero-divider {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, var(--c-rose-deep), var(--c-lila-deep));
-      margin: 0 auto; border-radius: 4px; animation: fadeDown .7s .3s ease both;
-    }
-    @keyframes fadeDown {
-      from { opacity:0; transform: translateY(-14px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(18px) scale(.98); }
-      to   { opacity:1; transform: translateY(0) scale(1); }
-    }
-    @keyframes slideRight {
-      from { opacity:0; transform: translateX(24px); }
-      to   { opacity:1; transform: translateX(0); }
-    }
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Detalles de Amor",
+    "description": "Tienda de regalos románticos en Guatemala. Globos, peluches, detalles únicos y ropa especial.",
+    "url": "https://detallesdeamor.gt/",
+    "telephone": "+50255630559",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GT",
+      "addressLocality": "Guatemala"
+    },
+    "openingHours": "Mo-Su 08:00-20:00",
+    "priceRange": "Q100–Q500",
+    "image": "https://detallesdeamor.gt/og-image.jpg",
+    "sameAs": [
+      "https://www.instagram.com/detallesdeamor.gt",
+      "https://www.facebook.com/detallesdeamor.gt"
+    ]
+  }
+  </script>
 
-    /* ===== SHOP ===== */
-    .shop { padding: 1rem 5% 5rem; }
-    .shop-header {
-      display: flex; align-items: baseline;
-      justify-content: space-between; margin-bottom: 2rem;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .section-title {
-      font-family: var(--font-display); font-size: 2rem; font-weight: 600;
-      position: relative; padding-left: 1.2rem;
-    }
-    .section-title::before {
-      content: ''; position: absolute; left: 0; top: 8%;
-      height: 84%; width: 4px;
-      background: linear-gradient(180deg, var(--c-rose-deep), var(--c-lila-deep));
-      border-radius: 4px;
-    }
-    .results-count { font-size: .82rem; color: var(--c-muted); }
-    .product-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.8rem;
-    }
-    .product-card {
-      background: var(--c-surface); border-radius: var(--r-lg);
-      overflow: hidden; border: 1px solid var(--c-border);
-      cursor: pointer;
-      transition: transform .3s cubic-bezier(.25,0,.1,1), box-shadow .3s;
-      box-shadow: var(--shadow-sm); animation: fadeUp .5s ease both;
-    }
-    .product-card:hover {
-      transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--c-lila);
-    }
-    .card-thumb {
-      position: relative; height: 270px; overflow: hidden; background: #f8f0f3;
-    }
-    .card-thumb img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s cubic-bezier(.25,0,.1,1);
-    }
-    .product-card:hover .card-thumb img { transform: scale(1.06); }
-    .badge-cat {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(255,255,255,.9); backdrop-filter: blur(8px);
-      border: 1px solid rgba(201,184,232,.5); border-radius: 50px;
-      padding: .18rem .75rem; font-size: .65rem; font-weight: 600;
-      color: var(--c-lila-deep); letter-spacing: .06em; text-transform: uppercase;
-    }
-    .badge-stock-low {
-      position: absolute; top: 12px; right: 12px;
-      background: rgba(212,167,106,.9); color: white;
-      border-radius: 50px; padding: .18rem .7rem;
-      font-size: .62rem; font-weight: 700; letter-spacing: .04em;
-    }
-    .card-body { padding: 1.2rem 1.4rem 1.4rem; }
-    .card-body h3 { font-weight: 600; font-size: .97rem; line-height: 1.3; margin-bottom: .3rem; }
-    .card-price {
-      font-family: var(--font-display); font-size: 1.35rem;
-      font-weight: 600; color: var(--c-rose-deep); margin-bottom: .6rem;
-    }
-    .card-cta {
-      display: flex; align-items: center; gap: .4rem;
-      font-size: .72rem; font-weight: 600; color: var(--c-lila-deep);
-      letter-spacing: .05em; text-transform: uppercase;
-    }
-    .card-cta i { transition: transform .2s; }
-    .product-card:hover .card-cta i { transform: translateX(4px); }
-    .empty-state {
-      grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--c-muted);
-    }
-    .empty-state i { font-size: 2.5rem; margin-bottom: 1rem; opacity: .4; }
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ===== MODAL PRODUCTO ===== */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(44,31,38,.55); backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: none; align-items: center; justify-content: center;
-      z-index: 800; padding: 1rem;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-card {
-      background: var(--c-surface); border-radius: var(--r-xl);
-      overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
-      max-width: 860px; width: 100%;
-      box-shadow: var(--shadow-lg); animation: fadeUp .3s ease; position: relative;
-    }
-    .modal-img-wrap { background: #f8f0f3; height: 100%; min-height: 380px; }
-    .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .modal-body {
-      padding: 2.4rem 2rem; display: flex; flex-direction: column;
-      gap: .8rem; overflow-y: auto; max-height: 80vh;
-    }
-    .modal-close {
-      position: absolute; top: 16px; right: 18px;
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 50%; width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; color: var(--c-muted);
-      transition: all .2s; z-index: 10;
-    }
-    .modal-close:hover { background: var(--c-border); color: var(--c-text); }
-    .modal-badge {
-      display: inline-flex; align-items: center; gap: .4rem;
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: 50px; padding: .2rem .8rem;
-      font-size: .68rem; font-weight: 600; color: var(--c-lila-deep);
-      letter-spacing: .06em; text-transform: uppercase; width: fit-content;
-    }
-    .modal-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; line-height: 1.1; }
-    .modal-price { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--c-lila-deep); }
-    .modal-desc { font-size: .88rem; color: var(--c-muted); line-height: 1.6; }
-    .modal-stock { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--c-muted); }
-    .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-success); }
-    .stock-dot.low { background: var(--c-gold); }
-    .stock-dot.out { background: var(--c-error); }
-    .qty-row { display: flex; align-items: center; gap: 1rem; margin-top: .2rem; }
-    .qty-label { font-size: .82rem; font-weight: 500; }
-    .qty-controls {
-      display: flex; align-items: center; gap: .6rem;
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: 50px; padding: .3rem .5rem;
-    }
-    .qty-controls button {
-      background: none; border: none; width: 28px; height: 28px;
-      border-radius: 50%; cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--c-text); transition: background .15s;
-    }
-    .qty-controls button:hover { background: var(--c-border); }
-    .qty-num { font-weight: 700; font-size: .95rem; min-width: 28px; text-align: center; }
-    .btn-primary {
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      color: white; border: none; border-radius: 50px;
-      padding: .9rem 1.8rem; font-family: var(--font-body);
-      font-size: .88rem; font-weight: 600; cursor: pointer; transition: all .2s;
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: .6rem; width: 100%; letter-spacing: .02em;
-    }
-    .btn-primary:hover:not(:disabled) {
-      transform: translateY(-2px); box-shadow: 0 8px 20px rgba(155,125,200,.35);
-    }
-    .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+        :root {
+            --c-bg: #fdf8f4;
+            --c-surface: #ffffff;
+            --c-rose: #e8b4bc;
+            --c-rose-deep: #c4788a;
+            --c-lila: #c9b8e8;
+            --c-lila-deep: #9b7dc8;
+            --c-gold: #d4a76a;
+            --c-text: #2c1f26;
+            --c-muted: #9a7f87;
+            --c-border: #f0dfe5;
+            --c-error: #d4726a;
+            --c-success: #7ab89a;
+            --shadow-sm: 0 2px 12px rgba(44, 31, 38, .06);
+            --shadow-md: 0 8px 32px rgba(44, 31, 38, .10);
+            --shadow-lg: 0 20px 60px rgba(44, 31, 38, .14);
+            --r-sm: 12px;
+            --r-md: 20px;
+            --r-lg: 32px;
+            --r-xl: 48px;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
+            --nav-h: 68px;
+        }
 
-    /* ===== CARRITO ===== */
-    .cart-overlay {
-      position: fixed; inset: 0; background: rgba(44,31,38,.4);
-      backdrop-filter: blur(6px); z-index: 600;
-      visibility: hidden; opacity: 0; transition: visibility .3s, opacity .3s;
-    }
-    .cart-overlay.open { visibility: visible; opacity: 1; }
-    .cart-panel {
-      position: fixed; top: 0; right: 0;
-      width: min(440px, 100vw); height: 100dvh;
-      background: var(--c-surface); display: flex; flex-direction: column;
-      transform: translateX(100%); transition: transform .35s cubic-bezier(.25,0,.1,1);
-      z-index: 610; box-shadow: var(--shadow-lg);
-    }
-    .cart-overlay.open .cart-panel { transform: translateX(0); }
-    .cart-head {
-      padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--c-border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .cart-head h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
-    .cart-close-btn {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: 50%; width: 34px; height: 34px;
-      cursor: pointer; font-size: .9rem; color: var(--c-muted);
-      display: flex; align-items: center; justify-content: center; transition: all .15s;
-    }
-    .cart-close-btn:hover { color: var(--c-text); }
-    .cart-items {
-      flex: 1; overflow-y: auto; padding: 1rem 1.2rem;
-      display: flex; flex-direction: column; gap: .85rem;
-    }
-    .cart-empty {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; height: 100%; color: var(--c-muted);
-      gap: .8rem; text-align: center;
-    }
-    .cart-empty i { font-size: 2.5rem; opacity: .3; }
-    .cart-empty p { font-size: .88rem; line-height: 1.5; }
-    .cart-item {
-      display: grid; grid-template-columns: 70px 1fr auto;
-      gap: .8rem; align-items: center;
-      background: var(--c-bg); border-radius: var(--r-md);
-      padding: .75rem; border: 1px solid var(--c-border);
-      animation: slideRight .25s ease;
-    }
-    .cart-item-img { width: 70px; height: 70px; border-radius: var(--r-sm); object-fit: cover; }
-    .cart-item-name { font-weight: 600; font-size: .85rem; margin-bottom: .2rem; }
-    .cart-item-price { font-size: .82rem; color: var(--c-muted); }
-    .cart-item-controls { display: flex; align-items: center; gap: .4rem; margin-top: .4rem; }
-    .qty-mini-btn {
-      background: var(--c-surface); border: 1px solid var(--c-border);
-      border-radius: 50%; width: 22px; height: 22px;
-      cursor: pointer; font-size: .75rem;
-      display: flex; align-items: center; justify-content: center; transition: all .15s;
-    }
-    .qty-mini-btn:hover { background: var(--c-border); }
-    .qty-mini-num { font-size: .82rem; font-weight: 700; min-width: 18px; text-align: center; }
-    .remove-btn {
-      background: none; border: none; color: var(--c-rose);
-      cursor: pointer; font-size: .78rem; margin-left: .3rem; transition: color .15s;
-    }
-    .remove-btn:hover { color: var(--c-rose-deep); }
-    .cart-item-subtotal {
-      font-family: var(--font-display); font-size: 1rem;
-      font-weight: 600; color: var(--c-rose-deep); text-align: right; white-space: nowrap;
-    }
-    .cart-foot {
-      padding: 1.2rem 1.5rem; border-top: 1px solid var(--c-border);
-      display: flex; flex-direction: column; gap: .8rem;
-    }
-    .cart-total-row { display: flex; justify-content: space-between; align-items: center; }
-    .cart-total-label { font-size: .85rem; color: var(--c-muted); }
-    .cart-total-amount { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--c-text); }
-    .btn-checkout {
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      color: white; border: none; border-radius: 50px;
-      padding: 1rem 1.8rem; font-family: var(--font-body);
-      font-size: .9rem; font-weight: 600; cursor: pointer; transition: all .2s;
-      width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem;
-    }
-    .btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(155,125,200,.4); }
-    .btn-empty-cart {
-      background: none; border: none; color: var(--c-muted);
-      font-size: .75rem; cursor: pointer; text-align: center;
-      width: 100%; padding: .3rem; transition: color .15s;
-    }
-    .btn-empty-cart:hover { color: var(--c-rose-deep); }
+        /* ===== DARK MODE VARIABLES ===== */
+        [data-theme="dark"] {
+            --c-bg: #1a1118;
+            --c-surface: #241920;
+            --c-rose: #d4909a;
+            --c-rose-deep: #e8a0ac;
+            --c-lila: #b09dd4;
+            --c-lila-deep: #c4a8e8;
+            --c-gold: #d4a76a;
+            --c-text: #f0e6ec;
+            --c-muted: #9a8090;
+            --c-border: #3a2830;
+            --c-error: #e08880;
+            --c-success: #7ab89a;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, .25);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, .35);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, .45);
+        }
 
-    /* ===== CHECKOUT ===== */
-    .checkout-overlay {
-      position: fixed; inset: 0; background: rgba(44,31,38,.6);
-      backdrop-filter: blur(12px); display: none;
-      align-items: center; justify-content: center; z-index: 900; padding: 1rem;
-    }
-    .checkout-overlay.open { display: flex; }
-    .checkout-modal {
-      background: var(--c-surface); border-radius: var(--r-xl);
-      width: min(560px, 100%); padding: 2.4rem 2.2rem;
-      box-shadow: var(--shadow-lg); animation: fadeUp .3s ease;
-      position: relative; max-height: 90dvh; overflow-y: auto;
-    }
-    .checkout-title { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; margin-bottom: .4rem; }
-    .checkout-sub { font-size: .85rem; color: var(--c-muted); margin-bottom: 1.8rem; }
-    .form-group { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1rem; }
-    .form-group label { font-size: .8rem; font-weight: 600; color: var(--c-text); letter-spacing: .02em; }
-    .form-input {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--r-sm); padding: .75rem 1rem;
-      font-family: var(--font-body); font-size: .88rem; color: var(--c-text);
-      outline: none; transition: all .2s; width: 100%;
-    }
-    .form-input:focus { border-color: var(--c-lila); box-shadow: 0 0 0 3px rgba(201,184,232,.25); }
-    .form-input::placeholder { color: var(--c-muted); }
-    .form-input.error { border-color: var(--c-error); box-shadow: 0 0 0 2px rgba(212,114,106,.15); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-    .order-summary-box {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--r-md); padding: 1rem 1.2rem; margin-bottom: 1.2rem;
-    }
-    .order-summary-title {
-      font-size: .75rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--c-muted); margin-bottom: .7rem;
-    }
-    .summary-item { display: flex; justify-content: space-between; font-size: .85rem; padding: .25rem 0; }
-    .summary-total {
-      display: flex; justify-content: space-between; font-weight: 700; font-size: 1rem;
-      border-top: 1px solid var(--c-border); margin-top: .5rem; padding-top: .5rem;
-    }
-    .checkout-btns { display: flex; flex-direction: column; gap: .7rem; }
-    .btn-secondary {
-      background: none; border: 1px solid var(--c-border); border-radius: 50px;
-      padding: .8rem 1.8rem; font-family: var(--font-body); font-size: .85rem;
-      font-weight: 500; cursor: pointer; transition: all .2s; color: var(--c-muted); text-align: center;
-    }
-    .btn-secondary:hover { border-color: var(--c-lila); color: var(--c-text); }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
 
-    /* ===== SUCCESS ===== */
-    .success-overlay {
-      position: fixed; inset: 0; background: rgba(44,31,38,.65);
-      backdrop-filter: blur(14px); display: none;
-      align-items: center; justify-content: center; z-index: 950; padding: 1rem;
-    }
-    .success-overlay.open { display: flex; }
-    .success-card {
-      background: var(--c-surface); border-radius: var(--r-xl);
-      width: min(480px, 100%); padding: 3rem 2.4rem;
-      text-align: center; box-shadow: var(--shadow-lg); animation: fadeUp .4s ease;
-    }
-    .success-icon {
-      width: 72px; height: 72px;
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-size: 1.8rem; color: white;
-      margin: 0 auto 1.4rem; animation: pulse 1s ease infinite alternate;
-    }
-    @keyframes pulse {
-      from { box-shadow: 0 0 0 0 rgba(155,125,200,.4); }
-      to   { box-shadow: 0 0 0 16px rgba(155,125,200,0); }
-    }
-    .success-title { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: .6rem; }
-    .success-msg { color: var(--c-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1.8rem; }
-    .success-actions { display: flex; flex-direction: column; gap: .7rem; }
-    .btn-whatsapp {
-      background: #25D366; color: white; border: none; border-radius: 50px;
-      padding: 1rem 1.8rem; font-family: var(--font-body); font-size: .9rem;
-      font-weight: 600; cursor: pointer; transition: all .2s;
-      width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem;
-    }
-    .btn-whatsapp:hover { background: #20ba5a; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,211,102,.35); }
+        body {
+            font-family: var(--font-body);
+            background: var(--c-bg);
+            color: var(--c-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    /* ===== LOADING OVERLAY ===== */
-    .loading-overlay {
-      position: fixed; inset: 0; background: rgba(44,31,38,.7);
-      backdrop-filter: blur(8px); display: none;
-      align-items: center; justify-content: center; z-index: 9990;
-    }
-    .loading-overlay.open { display: flex; }
-    .loading-box {
-      background: var(--c-surface); border-radius: var(--r-lg);
-      padding: 2.5rem 3rem; text-align: center;
-      box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
-      align-items: center; gap: 1.2rem;
-    }
-    .loading-spinner {
-      width: 52px; height: 52px;
-      border: 3px solid var(--c-border);
-      border-top-color: var(--c-lila-deep);
-      border-radius: 50%; animation: spin .7s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-txt { font-size: .9rem; color: var(--c-muted); }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .018;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
 
-    /* ===== PAGO / TRANSFERENCIA ===== */
-    .payment-section { margin-bottom: 1.2rem; }
-    .payment-label {
-      font-size: .75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--c-text); margin-bottom: .6rem;
-      display: flex; align-items: center; gap: .5rem;
-    }
-    .payment-label i { color: var(--c-lila-deep); }
-    .payment-box {
-      background: linear-gradient(135deg, rgba(34,139,80,.06), rgba(34,139,80,.03));
-      border: 1.5px solid rgba(34,139,80,.22); border-radius: var(--r-md);
-      padding: 1.1rem 1.3rem;
-    }
-    .payment-badge {
-      display: inline-flex; align-items: center; gap: .45rem;
-      background: rgba(34,139,80,.12); border: 1px solid rgba(34,139,80,.25);
-      border-radius: 50px; padding: .22rem .85rem;
-      font-size: .7rem; font-weight: 700; color: #1a7040;
-      letter-spacing: .04em; text-transform: uppercase; margin-bottom: .8rem;
-    }
-    .payment-rows { display: flex; flex-direction: column; gap: .5rem; }
-    .payment-row { display: flex; justify-content: space-between; align-items: center; font-size: .83rem; }
-    .payment-row-label { color: var(--c-muted); font-size: .78rem; }
-    .payment-row-value { font-weight: 600; color: var(--c-text); font-size: .85rem; }
-    .payment-row-value.mono { font-family: 'Courier New', monospace; font-size: .88rem; letter-spacing: .03em; }
-    .payment-note {
-      margin-top: .85rem; padding-top: .75rem; border-top: 1px solid rgba(34,139,80,.15);
-      font-size: .75rem; color: #1a7040; display: flex; align-items: flex-start; gap: .4rem; line-height: 1.5;
-    }
-    .payment-note i { margin-top: .1rem; flex-shrink: 0; }
-    .comprobante-group { margin-top: .9rem; }
-    .comprobante-group label { font-size: .8rem; font-weight: 600; color: var(--c-text); letter-spacing: .02em; display: block; margin-bottom: .45rem; }
-    .comprobante-input {
-      background: var(--c-bg); border: 1px solid var(--c-border);
-      border-radius: var(--r-sm); padding: .7rem 1rem;
-      font-family: var(--font-body); font-size: .88rem; color: var(--c-text);
-      outline: none; transition: all .2s; width: 100%;
-    }
-    .comprobante-input:focus { border-color: rgba(34,139,80,.5); box-shadow: 0 0 0 3px rgba(34,139,80,.12); }
-    .comprobante-input::placeholder { color: var(--c-muted); }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
 
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed; bottom: 2rem; left: 50%;
-      transform: translateX(-50%) translateY(12px);
-      background: var(--c-text); color: white;
-      padding: .65rem 1.5rem; border-radius: 50px;
-      font-size: .82rem; font-weight: 500; z-index: 9990;
-      opacity: 0; pointer-events: none; transition: all .25s; white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--c-surface); border-top: 1px solid var(--c-border);
-      padding: 2.4rem 5%; display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo {
-      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
-      background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .footer-copy { font-size: .78rem; color: var(--c-muted); }
-    .footer-socials { display: flex; gap: .8rem; }
-    .footer-socials a {
-      width: 34px; height: 34px; background: var(--c-bg);
-      border: 1px solid var(--c-border); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--c-muted); font-size: .85rem; text-decoration: none; transition: all .2s;
-    }
-    .footer-socials a:hover { border-color: var(--c-lila); color: var(--c-lila-deep); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--c-lila);
+            border-radius: 10px;
+        }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 860px) {
-      .modal-card { grid-template-columns: 1fr; }
-      .modal-img-wrap { min-height: 260px; max-height: 300px; }
-    }
-    @media (max-width: 680px) {
-      .navbar {
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: .5rem; padding: .7rem 4%; height: auto;
-      }
-      .nav-cats {
-        grid-column: 1/-1; justify-content: flex-start;
-        overflow-x: auto; flex-wrap: nowrap; padding-bottom: .2rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .nav-cats::-webkit-scrollbar { display: none; }
-      .nav-right { grid-column: 2; grid-row: 1; }
-      .search-wrap { display: none; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 5% 2.5rem; }
-      .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
-      .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
-      .card-thumb { height: 180px; }
-      .shop { padding: 1rem 4% 4rem; }
-      .checkout-modal { padding: 1.6rem 1.2rem; border-radius: var(--r-lg); }
-      .checkout-title { font-size: 1.5rem; }
-      .success-card { padding: 2rem 1.4rem; border-radius: var(--r-lg); }
-      .success-title { font-size: 1.6rem; }
-      .payment-row { flex-direction: column; align-items: flex-start; gap: .15rem; }
-      footer { flex-direction: column; align-items: center; text-align: center; padding: 1.8rem 5%; }
-    }
-    @media (max-width: 400px) {
-      .product-grid { grid-template-columns: 1fr 1fr; gap: .7rem; }
-      .card-thumb { height: 150px; }
-      .cart-panel { width: 100vw; }
-      .modal-card { border-radius: var(--r-lg); }
-    }
-  </style>
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            height: var(--nav-h);
+            background: rgba(253, 248, 244, .92);
+            backdrop-filter: blur(18px) saturate(1.4);
+            -webkit-backdrop-filter: blur(18px) saturate(1.4);
+            border-bottom: 1px solid var(--c-border);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: .01em;
+            white-space: nowrap;
+            background: linear-gradient(130deg, var(--c-rose-deep) 0%, var(--c-lila-deep) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .logo-heart {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .nav-cats {
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cat-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            font-family: var(--font-body);
+            font-size: .78rem;
+            font-weight: 500;
+            padding: .38rem .95rem;
+            border-radius: 50px;
+            color: var(--c-muted);
+            cursor: pointer;
+            transition: all .2s;
+            letter-spacing: .02em;
+        }
+
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: var(--c-surface);
+            border-color: var(--c-border);
+            color: var(--c-text);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cat-btn.active {
+            background: linear-gradient(120deg, rgba(232, 180, 188, .15), rgba(201, 184, 232, .2));
+            border-color: var(--c-rose);
+            color: var(--c-rose-deep);
+            font-weight: 600;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--c-muted);
+            font-size: .8rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .45rem .9rem .45rem 2.1rem;
+            width: 200px;
+            font-family: var(--font-body);
+            font-size: .82rem;
+            color: var(--c-text);
+            outline: none;
+            transition: all .2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--c-lila);
+            box-shadow: 0 0 0 3px rgba(201, 184, 232, .25);
+            width: 230px;
+        }
+
+        .search-input::placeholder {
+            color: var(--c-muted);
+        }
+
+        .cart-btn {
+            position: relative;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .45rem 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            cursor: pointer;
+            transition: all .2s;
+            box-shadow: var(--shadow-sm);
+            font-family: var(--font-body);
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--c-text);
+            white-space: nowrap;
+        }
+
+        .cart-btn:hover {
+            border-color: var(--c-lila);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-badge {
+            background: linear-gradient(135deg, var(--c-rose-deep), var(--c-lila-deep));
+            color: white;
+            border-radius: 50px;
+            font-size: .68rem;
+            font-weight: 700;
+            padding: .05rem .42rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            padding: 5rem 5% 4rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-deco {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .hero-deco-1 {
+            top: -60px;
+            right: -80px;
+            width: 340px;
+            height: 340px;
+            background: radial-gradient(circle, rgba(201, 184, 232, .22) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-deco-2 {
+            bottom: -40px;
+            left: -60px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(232, 180, 188, .18) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .3rem 1rem;
+            font-size: .73rem;
+            font-weight: 600;
+            color: var(--c-lila-deep);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            box-shadow: var(--shadow-sm);
+            animation: fadeDown .6s ease both;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 7vw, 5rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -.01em;
+            margin-bottom: 1rem;
+            animation: fadeDown .7s .1s ease both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-sub {
+            color: var(--c-muted);
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            animation: fadeDown .7s .2s ease both;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--c-rose-deep), var(--c-lila-deep));
+            margin: 0 auto;
+            border-radius: 4px;
+            animation: fadeDown .7s .3s ease both;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== SHOP ===== */
+        .shop {
+            padding: 1rem 5% 5rem;
+        }
+
+        .shop-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8%;
+            height: 84%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--c-rose-deep), var(--c-lila-deep));
+            border-radius: 4px;
+        }
+
+        .results-count {
+            font-size: .82rem;
+            color: var(--c-muted);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .product-card {
+            background: var(--c-surface);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            border: 1px solid var(--c-border);
+            cursor: pointer;
+            transition: transform .3s cubic-bezier(.25, 0, .1, 1), box-shadow .3s;
+            box-shadow: var(--shadow-sm);
+            animation: fadeUp .5s ease both;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--c-lila);
+        }
+
+        .card-thumb {
+            position: relative;
+            height: 270px;
+            overflow: hidden;
+            background: #f8f0f3;
+        }
+
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s cubic-bezier(.25, 0, .1, 1);
+        }
+
+        .product-card:hover .card-thumb img {
+            transform: scale(1.06);
+        }
+
+        .badge-cat {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(201, 184, 232, .5);
+            border-radius: 50px;
+            padding: .18rem .75rem;
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--c-lila-deep);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .badge-stock-low {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(212, 167, 106, .9);
+            color: white;
+            border-radius: 50px;
+            padding: .18rem .7rem;
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .card-body {
+            padding: 1.2rem 1.4rem 1.4rem;
+        }
+
+        .card-body h3 {
+            font-weight: 600;
+            font-size: .97rem;
+            line-height: 1.3;
+            margin-bottom: .3rem;
+        }
+
+        .card-price {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--c-rose-deep);
+            margin-bottom: .6rem;
+        }
+
+        .card-cta {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .72rem;
+            font-weight: 600;
+            color: var(--c-lila-deep);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .card-cta i {
+            transition: transform .2s;
+        }
+
+        .product-card:hover .card-cta i {
+            transform: translateX(4px);
+        }
+
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--c-muted);
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: .4;
+        }
+
+        /* ===== MODAL PRODUCTO ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 800;
+            padding: 1rem;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--c-surface);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 860px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp .3s ease;
+            position: relative;
+        }
+
+        .modal-img-wrap {
+            background: #f8f0f3;
+            height: 100%;
+            min-height: 380px;
+        }
+
+        .modal-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 2.4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--c-muted);
+            transition: all .2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--c-border);
+            color: var(--c-text);
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .2rem .8rem;
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--c-lila-deep);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .modal-price {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--c-lila-deep);
+        }
+
+        .modal-desc {
+            font-size: .88rem;
+            color: var(--c-muted);
+            line-height: 1.6;
+        }
+
+        .modal-stock {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .8rem;
+            color: var(--c-muted);
+        }
+
+        .stock-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--c-success);
+        }
+
+        .stock-dot.low {
+            background: var(--c-gold);
+        }
+
+        .stock-dot.out {
+            background: var(--c-error);
+        }
+
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: .2rem;
+        }
+
+        .qty-label {
+            font-size: .82rem;
+            font-weight: 500;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .3rem .5rem;
+        }
+
+        .qty-controls button {
+            background: none;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--c-text);
+            transition: background .15s;
+        }
+
+        .qty-controls button:hover {
+            background: var(--c-border);
+        }
+
+        .qty-num {
+            font-weight: 700;
+            font-size: .95rem;
+            min-width: 28px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: .9rem 1.8rem;
+            font-family: var(--font-body);
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            width: 100%;
+            letter-spacing: .02em;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 125, 200, .35);
+        }
+
+        .btn-primary:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        /* ===== CARRITO ===== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .4);
+            backdrop-filter: blur(6px);
+            z-index: 600;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility .3s, opacity .3s;
+        }
+
+        .cart-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(440px, 100vw);
+            height: 100dvh;
+            background: var(--c-surface);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.25, 0, .1, 1);
+            z-index: 610;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cart-overlay.open .cart-panel {
+            transform: translateX(0);
+        }
+
+        .cart-head {
+            padding: 1.4rem 1.5rem;
+            border-bottom: 1px solid var(--c-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-head h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .cart-close-btn {
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            font-size: .9rem;
+            color: var(--c-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .15s;
+        }
+
+        .cart-close-btn:hover {
+            color: var(--c-text);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: .85rem;
+        }
+
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--c-muted);
+            gap: .8rem;
+            text-align: center;
+        }
+
+        .cart-empty i {
+            font-size: 2.5rem;
+            opacity: .3;
+        }
+
+        .cart-empty p {
+            font-size: .88rem;
+            line-height: 1.5;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: .8rem;
+            align-items: center;
+            background: var(--c-bg);
+            border-radius: var(--r-md);
+            padding: .75rem;
+            border: 1px solid var(--c-border);
+            animation: slideRight .25s ease;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--r-sm);
+            object-fit: cover;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: .85rem;
+            margin-bottom: .2rem;
+        }
+
+        .cart-item-price {
+            font-size: .82rem;
+            color: var(--c-muted);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-top: .4rem;
+        }
+
+        .qty-mini-btn {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: .75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .15s;
+        }
+
+        .qty-mini-btn:hover {
+            background: var(--c-border);
+        }
+
+        .qty-mini-num {
+            font-size: .82rem;
+            font-weight: 700;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--c-rose);
+            cursor: pointer;
+            font-size: .78rem;
+            margin-left: .3rem;
+            transition: color .15s;
+        }
+
+        .remove-btn:hover {
+            color: var(--c-rose-deep);
+        }
+
+        .cart-item-subtotal {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--c-rose-deep);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .cart-foot {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--c-border);
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total-label {
+            font-size: .85rem;
+            color: var(--c-muted);
+        }
+
+        .cart-total-amount {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--c-text);
+        }
+
+        .btn-checkout {
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 1.8rem;
+            font-family: var(--font-body);
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(155, 125, 200, .4);
+        }
+
+        .btn-empty-cart {
+            background: none;
+            border: none;
+            color: var(--c-muted);
+            font-size: .75rem;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            padding: .3rem;
+            transition: color .15s;
+        }
+
+        .btn-empty-cart:hover {
+            color: var(--c-rose-deep);
+        }
+
+        /* ===== CHECKOUT ===== */
+        .checkout-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .6);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            padding: 1rem;
+        }
+
+        .checkout-overlay.open {
+            display: flex;
+        }
+
+        .checkout-modal {
+            background: var(--c-surface);
+            border-radius: var(--r-xl);
+            width: min(560px, 100%);
+            padding: 2.4rem 2.2rem;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp .3s ease;
+            position: relative;
+            max-height: 90dvh;
+            overflow-y: auto;
+        }
+
+        .checkout-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: .4rem;
+        }
+
+        .checkout-sub {
+            font-size: .85rem;
+            color: var(--c-muted);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--c-text);
+            letter-spacing: .02em;
+        }
+
+        .form-input {
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: .75rem 1rem;
+            font-family: var(--font-body);
+            font-size: .88rem;
+            color: var(--c-text);
+            outline: none;
+            transition: all .2s;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            border-color: var(--c-lila);
+            box-shadow: 0 0 0 3px rgba(201, 184, 232, .25);
+        }
+
+        .form-input::placeholder {
+            color: var(--c-muted);
+        }
+
+        .form-input.error {
+            border-color: var(--c-error);
+            box-shadow: 0 0 0 2px rgba(212, 114, 106, .15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .8rem;
+        }
+
+        .order-summary-box {
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .order-summary-title {
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--c-muted);
+            margin-bottom: .7rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: .85rem;
+            padding: .25rem 0;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1rem;
+            border-top: 1px solid var(--c-border);
+            margin-top: .5rem;
+            padding-top: .5rem;
+        }
+
+        .checkout-btns {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .8rem 1.8rem;
+            font-family: var(--font-body);
+            font-size: .85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .2s;
+            color: var(--c-muted);
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--c-lila);
+            color: var(--c-text);
+        }
+
+        /* ===== SUCCESS ===== */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .65);
+            backdrop-filter: blur(14px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 950;
+            padding: 1rem;
+        }
+
+        .success-overlay.open {
+            display: flex;
+        }
+
+        .success-card {
+            background: var(--c-surface);
+            border-radius: var(--r-xl);
+            width: min(480px, 100%);
+            padding: 3rem 2.4rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp .4s ease;
+        }
+
+        .success-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin: 0 auto 1.4rem;
+            animation: pulse 1s ease infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                box-shadow: 0 0 0 0 rgba(155, 125, 200, .4);
+            }
+
+            to {
+                box-shadow: 0 0 0 16px rgba(155, 125, 200, 0);
+            }
+        }
+
+        .success-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+        }
+
+        .success-msg {
+            color: var(--c-muted);
+            font-size: .9rem;
+            line-height: 1.6;
+            margin-bottom: 1.8rem;
+        }
+
+        .success-actions {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 1.8rem;
+            font-family: var(--font-body);
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(37, 211, 102, .35);
+        }
+
+        /* ===== LOADING OVERLAY ===== */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .7);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9990;
+        }
+
+        .loading-overlay.open {
+            display: flex;
+        }
+
+        .loading-box {
+            background: var(--c-surface);
+            border-radius: var(--r-lg);
+            padding: 2.5rem 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .loading-spinner {
+            width: 52px;
+            height: 52px;
+            border: 3px solid var(--c-border);
+            border-top-color: var(--c-lila-deep);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-txt {
+            font-size: .9rem;
+            color: var(--c-muted);
+        }
+
+        /* ===== PAGO / TRANSFERENCIA ===== */
+        .payment-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .payment-label {
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--c-text);
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .payment-label i {
+            color: var(--c-lila-deep);
+        }
+
+        .payment-box {
+            background: linear-gradient(135deg, rgba(34, 139, 80, .06), rgba(34, 139, 80, .03));
+            border: 1.5px solid rgba(34, 139, 80, .22);
+            border-radius: var(--r-md);
+            padding: 1.1rem 1.3rem;
+        }
+
+        .payment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(34, 139, 80, .12);
+            border: 1px solid rgba(34, 139, 80, .25);
+            border-radius: 50px;
+            padding: .22rem .85rem;
+            font-size: .7rem;
+            font-weight: 700;
+            color: #1a7040;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-bottom: .8rem;
+        }
+
+        .payment-rows {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: .83rem;
+        }
+
+        .payment-row-label {
+            color: var(--c-muted);
+            font-size: .78rem;
+        }
+
+        .payment-row-value {
+            font-weight: 600;
+            color: var(--c-text);
+            font-size: .85rem;
+        }
+
+        .payment-row-value.mono {
+            font-family: 'Courier New', monospace;
+            font-size: .88rem;
+            letter-spacing: .03em;
+        }
+
+        .payment-note {
+            margin-top: .85rem;
+            padding-top: .75rem;
+            border-top: 1px solid rgba(34, 139, 80, .15);
+            font-size: .75rem;
+            color: #1a7040;
+            display: flex;
+            align-items: flex-start;
+            gap: .4rem;
+            line-height: 1.5;
+        }
+
+        .payment-note i {
+            margin-top: .1rem;
+            flex-shrink: 0;
+        }
+
+        .comprobante-group {
+            margin-top: .9rem;
+        }
+
+        .comprobante-group label {
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--c-text);
+            letter-spacing: .02em;
+            display: block;
+            margin-bottom: .45rem;
+        }
+
+        .comprobante-input {
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: .7rem 1rem;
+            font-family: var(--font-body);
+            font-size: .88rem;
+            color: var(--c-text);
+            outline: none;
+            transition: all .2s;
+            width: 100%;
+        }
+
+        .comprobante-input:focus {
+            border-color: rgba(34, 139, 80, .5);
+            box-shadow: 0 0 0 3px rgba(34, 139, 80, .12);
+        }
+
+        .comprobante-input::placeholder {
+            color: var(--c-muted);
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(12px);
+            background: var(--c-text);
+            color: white;
+            padding: .65rem 1.5rem;
+            border-radius: 50px;
+            font-size: .82rem;
+            font-weight: 500;
+            z-index: 9990;
+            opacity: 0;
+            pointer-events: none;
+            transition: all .25s;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--c-surface);
+            border-top: 1px solid var(--c-border);
+            padding: 2.4rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-copy {
+            font-size: .78rem;
+            color: var(--c-muted);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: .8rem;
+        }
+
+        .footer-socials a {
+            width: 34px;
+            height: 34px;
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--c-muted);
+            font-size: .85rem;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .footer-socials a:hover {
+            border-color: var(--c-lila);
+            color: var(--c-lila-deep);
+        }
+
+        /* ===== FLOATING HEARTS (hero deco) ===== */
+        .floating-hearts {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .fh {
+            position: absolute;
+            font-size: 1rem;
+            opacity: 0;
+            animation: floatHeart 6s ease-in infinite;
+            color: var(--c-rose-deep);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(.6) rotate(-10deg);
+            }
+
+            15% {
+                opacity: .55;
+            }
+
+            80% {
+                opacity: .2;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-140px) scale(1.1) rotate(12deg);
+            }
+        }
+
+        /* ===== DESIGN IMPROVEMENTS ===== */
+        /* Cuter product cards */
+        .product-card {
+            border-radius: 28px;
+        }
+
+        .card-thumb {
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card-body {
+            padding: 1.2rem 1.4rem 1.5rem;
+        }
+
+        .card-price {
+            font-size: 1.4rem;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Cute add-to-cart sparkle ripple */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, .3) 0%, transparent 65%);
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity .4s, transform .4s;
+        }
+
+        .btn-primary:active::after {
+            opacity: 1;
+            transform: scale(2.2);
+            transition: none;
+        }
+
+        /* Cat buttons cuter */
+        .cat-btn {
+            border-radius: 50px;
+            font-size: .8rem;
+            padding: .42rem 1.1rem;
+        }
+
+        .cat-btn.active {
+            background: linear-gradient(120deg, rgba(232, 180, 188, .22), rgba(201, 184, 232, .28));
+        }
+
+        /* Hero improvements */
+        .hero-eyebrow {
+            letter-spacing: .08em;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 3px;
+            border-radius: 10px;
+        }
+
+        /* ===== MOBILE MENU (NEW CSS) ===== */
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            color: var(--c-text);
+            transition: all .2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-menu-btn:hover {
+            border-color: var(--c-rose);
+        }
+
+        .mobile-menu-btn .menu-icon {
+            font-size: 1rem;
+            transition: transform .3s;
+        }
+
+        /* Mobile drawer */
+        .mobile-cats-drawer {
+            display: none;
+            background: rgba(253, 248, 244, .97);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border-bottom: 1px solid var(--c-border);
+            padding: 1rem 5% 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 8px 24px rgba(44, 31, 38, .07);
+        }
+
+        .mobile-cats-drawer.open {
+            display: flex;
+            animation: drawerSlide .25s cubic-bezier(.25, 0, .1, 1) both;
+        }
+
+        @keyframes drawerSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .drawer-cats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .drawer-search-wrap {
+            position: relative;
+        }
+
+        .drawer-search-wrap i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--c-muted);
+            font-size: .85rem;
+            pointer-events: none;
+        }
+
+        .drawer-search-input {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            padding: .6rem 1rem .6rem 2.4rem;
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: .85rem;
+            color: var(--c-text);
+            outline: none;
+            transition: all .2s;
+        }
+
+        .drawer-search-input:focus {
+            border-color: var(--c-lila);
+            box-shadow: 0 0 0 3px rgba(201, 184, 232, .22);
+        }
+
+        .drawer-search-input::placeholder {
+            color: var(--c-muted);
+        }
+
+        .drawer-label {
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .cart-text-hide {
+            display: inline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 860px) {
+            .modal-card {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-img-wrap {
+                min-height: 260px;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .navbar {
+                grid-template-columns: auto auto 1fr auto;
+                gap: .4rem;
+                padding: 0 4%;
+                height: var(--nav-h);
+            }
+
+            /* Ocultar elementos de escritorio */
+            .nav-cats,
+            .search-wrap {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                order: 1;
+            }
+
+            /* Mostrar botón móvil */
+            .logo {
+                order: 2;
+                font-size: 1.3rem;
+            }
+
+            .nav-right {
+                order: 3;
+                justify-content: flex-end;
+                gap: .4rem;
+            }
+
+            .dark-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: .85rem;
+            }
+
+            .hero {
+                padding: 3rem 5% 2rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 2.6rem);
+                line-height: 1.15;
+            }
+
+            .hero-sub {
+                padding: 0 1rem;
+                font-size: 0.95rem;
+            }
+
+            /* Grid más fluido y seguro para móvil */
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .card-body {
+                padding: 1rem 0.8rem 1.2rem;
+            }
+
+            .card-price {
+                font-size: 1.15rem;
+            }
+
+            .card-cta {
+                font-size: 0.65rem;
+            }
+
+            .cart-btn {
+                padding: .45rem .8rem;
+            }
+
+            .cart-text-hide {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .shop {
+                padding: 1rem 4% 4rem;
+            }
+
+            .checkout-modal {
+                padding: 1.6rem 1.2rem;
+                border-radius: var(--r-lg);
+            }
+
+            .checkout-title {
+                font-size: 1.5rem;
+            }
+
+            .success-card {
+                padding: 2rem 1.4rem;
+                border-radius: var(--r-lg);
+            }
+
+            .success-title {
+                font-size: 1.6rem;
+            }
+
+            .payment-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .15rem;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 1.8rem 5%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .product-grid {
+                gap: 0.6rem;
+            }
+
+            .card-thumb {
+                height: 130px;
+            }
+
+            .cart-panel {
+                width: 100vw;
+            }
+
+            .modal-card {
+                border-radius: var(--r-lg);
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 5.8rem;
+            right: 1.5rem;
+            width: 54px;
+            height: 54px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.55rem;
+            cursor: pointer;
+            box-shadow: 0 4px 22px rgba(37, 211, 102, .45);
+            transition: all .25s;
+            z-index: 400;
+            text-decoration: none;
+        }
+
+        .fab-whatsapp:hover {
+            background: #20ba5a;
+            transform: translateY(-3px) scale(1.07);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, .55);
+        }
+
+        .fab-whatsapp-tooltip {
+            position: absolute;
+            right: 62px;
+            white-space: nowrap;
+            background: var(--c-text);
+            color: white;
+            font-family: var(--font-body);
+            font-size: .72rem;
+            font-weight: 500;
+            padding: .35rem .75rem;
+            border-radius: 50px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+        }
+
+        .fab-whatsapp:hover .fab-whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 46px;
+            height: 46px;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .95rem;
+            color: var(--c-lila-deep);
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: all .3s cubic-bezier(.25, 0, .1, 1);
+            z-index: 400;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--c-lila-deep);
+            color: white;
+            border-color: var(--c-lila-deep);
+            transform: translateY(-2px);
+        }
+
+        /* ===== COPY BUTTON ===== */
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--c-lila-deep);
+            padding: .18rem .45rem;
+            border-radius: 6px;
+            font-size: .85rem;
+            transition: all .2s;
+            margin-left: .35rem;
+            vertical-align: middle;
+        }
+
+        .copy-btn:hover {
+            background: rgba(155, 125, 200, .13);
+        }
+
+        .copy-btn.copied {
+            color: var(--c-success);
+        }
+
+
+        /* ===== STOCK INDICATOR IN CARD ===== */
+        .card-stock-row {
+            display: flex;
+            align-items: center;
+            gap: .38rem;
+            margin-top: .4rem;
+        }
+
+        .card-stock-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .card-stock-dot.ok {
+            background: var(--c-success);
+            box-shadow: 0 0 0 2px rgba(122, 184, 154, .25);
+        }
+
+        .card-stock-dot.low {
+            background: var(--c-gold);
+            box-shadow: 0 0 0 2px rgba(212, 167, 106, .25);
+        }
+
+        .card-stock-dot.out {
+            background: var(--c-error);
+            box-shadow: 0 0 0 2px rgba(212, 114, 106, .25);
+        }
+
+        .card-stock-text {
+            font-size: .7rem;
+            color: var(--c-muted);
+        }
+
+        .card-stock-text.low {
+            color: var(--c-gold);
+            font-weight: 600;
+        }
+
+        .card-stock-text.out {
+            color: var(--c-error);
+            font-weight: 600;
+        }
+
+        /* ===== CATEGORY CAROUSELS ===== */
+        .category-section {
+            margin-bottom: 2.8rem;
+        }
+
+        .category-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.1rem;
+            padding: 0 .1rem;
+        }
+
+        .category-section-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+        }
+
+        .category-section-title .cat-pill {
+            font-family: var(--font-body);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            background: linear-gradient(120deg, rgba(232, 180, 188, .2), rgba(201, 184, 232, .25));
+            border: 1px solid var(--c-rose);
+            color: var(--c-rose-deep);
+            border-radius: 50px;
+            padding: .2rem .65rem;
+        }
+
+        .cat-count {
+            font-size: .78rem;
+            color: var(--c-muted);
+        }
+
+        .carousel-wrap {
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            overflow-y: visible;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* Firefox */
+            padding-bottom: .6rem;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-track .product-card {
+            flex: 0 0 220px;
+            scroll-snap-align: start;
+            animation: fadeUp .4s ease both;
+        }
+
+        .carousel-track .card-thumb {
+            height: 200px;
+        }
+
+        /* Arrow buttons */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            color: var(--c-text);
+            font-size: .85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all .2s;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-wrap:hover .carousel-arrow {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--c-lila-deep);
+            color: white;
+            border-color: var(--c-lila-deep);
+        }
+
+        .carousel-arrow.left {
+            left: -16px;
+        }
+
+        .carousel-arrow.right {
+            right: -16px;
+        }
+
+        .carousel-arrow.hidden {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* Grid fallback (search / single category) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 680px) {
+            .carousel-track .product-card {
+                flex: 0 0 165px;
+            }
+
+            .carousel-track .card-thumb {
+                height: 155px;
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .carousel-track .product-card {
+                flex: 0 0 145px;
+            }
+
+            .carousel-track .card-thumb {
+                height: 135px;
+            }
+        }
+
+        /* ===== FOOTER LEGAL LINKS ===== */
+        footer {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: .7rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-legal-link {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: .75rem;
+            color: var(--c-muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color .2s;
+        }
+
+        .footer-legal-link:hover {
+            color: var(--c-lila-deep);
+        }
+
+        .footer-legal-sep {
+            color: var(--c-border);
+            font-size: .7rem;
+        }
+
+        /* ===== LEGAL MODAL ===== */
+        .legal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 31, 38, .6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            padding: 1rem;
+        }
+
+        .legal-overlay.open {
+            display: flex;
+        }
+
+        .legal-card {
+            background: var(--c-surface);
+            border-radius: var(--r-xl);
+            width: min(680px, 100%);
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+            animation: fadeUp .3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: .9rem;
+            color: var(--c-muted);
+            transition: all .2s;
+            z-index: 10;
+        }
+
+        .legal-close:hover {
+            background: var(--c-border);
+            color: var(--c-text);
+        }
+
+        .legal-content {
+            padding: 2.2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--c-lila) transparent;
+        }
+
+        .legal-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: .35rem;
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .legal-content .legal-date {
+            font-size: .75rem;
+            color: var(--c-muted);
+            margin-bottom: 1.6rem;
+            display: block;
+        }
+
+        .legal-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.4rem 0 .5rem;
+            color: var(--c-lila-deep);
+        }
+
+        .legal-content p,
+        .legal-content li {
+            font-size: .85rem;
+            color: var(--c-muted);
+            line-height: 1.7;
+            margin-bottom: .5rem;
+        }
+
+        .legal-content ul {
+            padding-left: 1.2rem;
+        }
+
+        .legal-content li {
+            margin-bottom: .3rem;
+        }
+
+        .legal-content a {
+            color: var(--c-lila-deep);
+        }
+
+        .legal-highlight {
+            background: linear-gradient(120deg, rgba(232, 180, 188, .1), rgba(201, 184, 232, .12));
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: .9rem 1.1rem;
+            margin: 1rem 0;
+            font-size: .83rem;
+            color: var(--c-text);
+            display: flex;
+            gap: .6rem;
+            align-items: flex-start;
+        }
+
+        .legal-highlight i {
+            color: var(--c-lila-deep);
+            margin-top: .15rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== COOKIE BANNER ===== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--c-surface);
+            border-top: 1px solid var(--c-border);
+            box-shadow: 0 -8px 32px rgba(44, 31, 38, .12);
+            z-index: 850;
+            padding: 1rem 5%;
+            transform: translateY(100%);
+            transition: transform .4s cubic-bezier(.25, 0, .1, 1);
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        .cookie-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            font-size: .82rem;
+            color: var(--c-muted);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .cookie-icon {
+            font-size: 1.4rem;
+            color: var(--c-gold);
+            flex-shrink: 0;
+            margin-top: .05rem;
+        }
+
+        .cookie-text strong {
+            color: var(--c-text);
+            display: block;
+            margin-bottom: .15rem;
+        }
+
+        .cookie-more {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--c-lila-deep);
+            font-size: .82rem;
+            font-family: var(--font-body);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            padding: 0;
+        }
+
+        .cookie-btns {
+            display: flex;
+            gap: .6rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-accept,
+        .cookie-reject {
+            border-radius: 50px;
+            padding: .55rem 1.3rem;
+            font-family: var(--font-body);
+            font-size: .8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            border: 1px solid;
+        }
+
+        .cookie-accept {
+            background: linear-gradient(130deg, var(--c-rose-deep), var(--c-lila-deep));
+            color: white;
+            border-color: transparent;
+        }
+
+        .cookie-accept:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(155, 125, 200, .3);
+        }
+
+        .cookie-reject {
+            background: transparent;
+            color: var(--c-muted);
+            border-color: var(--c-border);
+        }
+
+        .cookie-reject:hover {
+            border-color: var(--c-lila);
+            color: var(--c-text);
+        }
+
+        @media (max-width: 680px) {
+            .cookie-inner {
+                flex-direction: column;
+            }
+
+            .cookie-btns {
+                width: 100%;
+            }
+
+            .cookie-accept,
+            .cookie-reject {
+                flex: 1;
+                text-align: center;
+            }
+
+            .legal-content {
+                padding: 1.6rem 1.2rem 1.2rem;
+            }
+
+            .legal-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .legal-card {
+                border-radius: var(--r-lg);
+            }
+        }
+
+        /* ===== DARK MODE TOGGLE ===== */
+        .dark-toggle {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: 50px;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: .95rem;
+            color: var(--c-muted);
+            transition: all .2s;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .dark-toggle:hover {
+            border-color: var(--c-lila);
+            color: var(--c-lila-deep);
+        }
+
+        /* Dark mode background adjustments */
+        [data-theme="dark"] .navbar {
+            background: rgba(26, 17, 24, .92);
+        }
+
+        [data-theme="dark"] .mobile-cats-drawer {
+            background: rgba(26, 17, 24, .97);
+        }
+
+        [data-theme="dark"] .card-thumb {
+            background: #2e1e28;
+        }
+
+        [data-theme="dark"] .modal-img-wrap {
+            background: #2e1e28;
+        }
+
+        [data-theme="dark"] .badge-cat {
+            background: rgba(36, 25, 32, .9);
+            border-color: rgba(176, 157, 212, .4);
+        }
+
+        @media (max-width: 680px) {
+            .fab-whatsapp {
+                width: 48px;
+                height: 48px;
+                font-size: 1.35rem;
+                bottom: 5.2rem;
+                right: 1rem;
+            }
+
+            .back-to-top {
+                width: 42px;
+                height: 42px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- ===== LOADING ===== -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-box">
-    <div class="loading-spinner"></div>
-    <div class="loading-txt">Generando tu boleta...</div>
-  </div>
-</div>
-
-<!-- ===== NAVBAR ===== -->
-<header class="navbar">
-  <div class="logo">
-    <span class="logo-heart"><i class="fas fa-heart" style="font-size:.7rem;"></i></span>
-    Detalles de Amor
-  </div>
-  <nav class="nav-cats">
-    <button class="cat-btn active" data-cat="todos">Todos</button>
-    <button class="cat-btn" data-cat="globos">Globos</button>
-    <button class="cat-btn" data-cat="peluches">Peluches</button>
-    <button class="cat-btn" data-cat="detalles">Detalles</button>
-    <button class="cat-btn" data-cat="ropa">Ropa</button>
-  </nav>
-  <div class="nav-right">
-    <div class="search-wrap">
-      <i class="fas fa-search"></i>
-      <input type="text" class="search-input" id="searchInput" placeholder="Buscar regalo...">
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-box">
+            <div class="loading-spinner"></div>
+            <div class="loading-txt">Generando tu boleta...</div>
+        </div>
     </div>
-    <button class="cart-btn" id="openCartBtn">
-      <i class="fas fa-bag-shopping"></i>
-      <span>Carrito</span>
-      <span class="cart-badge" id="cartCount">0</span>
+
+    <div class="nav-wrapper">
+        <header class="navbar">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars menu-icon"></i>
+            </button>
+
+            <div class="logo">
+                <span class="logo-heart"><i class="fas fa-heart" style="font-size:.7rem;"></i></span>
+                Detalles de Amor
+            </div>
+
+            <nav class="nav-cats">
+                <button class="cat-btn active" data-cat="todos">Todos</button>
+                <button class="cat-btn" data-cat="globos">Globos</button>
+                <button class="cat-btn" data-cat="peluches">Peluches</button>
+                <button class="cat-btn" data-cat="detalles">Detalles</button>
+                <button class="cat-btn" data-cat="ropa">Ropa</button>
+            </nav>
+
+            <div class="nav-right">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar regalo...">
+                </div>
+                <button class="dark-toggle" id="darkToggle" title="Modo oscuro">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="cart-btn" id="openCartBtn">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-text-hide">Carrito</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="mobile-cats-drawer" id="mobileDrawer">
+            <div class="drawer-search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" class="drawer-search-input" id="drawerSearchInput" placeholder="Buscar regalo...">
+            </div>
+            <div class="drawer-label"><i class="fas fa-tags"></i> Categorías</div>
+            <div class="drawer-cats">
+                <button class="cat-btn active mobile-cat-btn" data-cat="todos">Todos</button>
+                <button class="cat-btn mobile-cat-btn" data-cat="globos">Globos</button>
+                <button class="cat-btn mobile-cat-btn" data-cat="peluches">Peluches</button>
+                <button class="cat-btn mobile-cat-btn" data-cat="detalles">Detalles</button>
+                <button class="cat-btn mobile-cat-btn" data-cat="ropa">Ropa</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-deco hero-deco-1"></div>
+        <div class="hero-deco hero-deco-2"></div>
+        <div class="hero-eyebrow"><i class="fas fa-sparkles"></i> Regalos con corazón · Guatemala</div>
+        <h1>Pequeños gestos,<br><em>grandes amores</em></h1>
+        <p class="hero-sub">Globos, peluches, detalles únicos y moda romántica para celebrar cada momento especial.</p>
+        <div class="hero-divider"></div>
+    </section>
+
+    <main class="shop">
+        <div class="shop-header">
+            <h2 class="section-title">Colección</h2>
+            <span class="results-count" id="resultsCount"></span>
+        </div>
+        <div id="shopContent"></div>
+    </main>
+
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeModalBtn"><i class="fas fa-xmark"></i></button>
+            <div class="modal-img-wrap">
+                <img id="modalImg" alt="Producto" loading="lazy">
+            </div>
+            <div class="modal-body">
+                <div class="modal-badge" id="modalCat"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-stock">
+                    <span class="stock-dot" id="stockDot"></span>
+                    <span id="modalStock"></span>
+                </div>
+                <div class="qty-row">
+                    <span class="qty-label">Cantidad</span>
+                    <div class="qty-controls">
+                        <button id="qtyMinus">−</button>
+                        <span class="qty-num" id="qtyNum">1</span>
+                        <button id="qtyPlus">+</button>
+                    </div>
+                </div>
+                <button class="btn-primary" id="modalAddBtn">
+                    <i class="fas fa-heart"></i> Añadir al carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-panel">
+            <div class="cart-head">
+                <h3><i class="fas fa-bag-shopping"
+                        style="font-size:1rem; color:var(--c-lila-deep); margin-right:.5rem;"></i>Mi pedido</h3>
+                <button class="cart-close-btn" id="closeCartBtn"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-foot">
+                <div class="cart-total-row">
+                    <span class="cart-total-label">Total estimado</span>
+                    <span class="cart-total-amount" id="cartTotal">Q 0.00</span>
+                </div>
+                <button class="btn-checkout" id="checkoutBtn">
+                    <i class="fas fa-lock"></i> Confirmar pedido
+                </button>
+                <button class="btn-empty-cart" id="emptyCartBtn">
+                    <i class="fas fa-trash-can"></i> Vaciar carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-overlay" id="checkoutOverlay">
+        <div class="checkout-modal">
+            <button class="modal-close" id="closeCheckoutBtn"><i class="fas fa-xmark"></i></button>
+            <h2 class="checkout-title">Finalizar pedido</h2>
+            <p class="checkout-sub">Completa tus datos para confirmar y recibir tu boleta.</p>
+            <div class="order-summary-box" id="checkoutSummary"></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="clientName">Nombre *</label>
+                    <input type="text" id="clientName" class="form-input" placeholder="Tu nombre"
+                        autocomplete="given-name">
+                </div>
+                <div class="form-group">
+                    <label for="clientLastname">Apellido *</label>
+                    <input type="text" id="clientLastname" class="form-input" placeholder="Tu apellido"
+                        autocomplete="family-name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="clientPhone">WhatsApp / Teléfono *</label>
+                <input type="tel" id="clientPhone" class="form-input" placeholder="+502 0000 0000" autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label for="clientAddress">Dirección de entrega *</label>
+                <input type="text" id="clientAddress" class="form-input" placeholder="Zona, calle, número..."
+                    autocomplete="street-address">
+            </div>
+            <div class="form-group">
+                <label for="clientNote">Nota especial (opcional)</label>
+                <input type="text" id="clientNote" class="form-input" placeholder="Dedicatoria, color favorito...">
+            </div>
+
+            <div class="payment-section">
+                <div class="payment-label"><i class="fas fa-university"></i> Método de pago</div>
+                <div class="payment-box">
+                    <div class="payment-badge"><i class="fas fa-building-columns"></i> Banco Industrial</div>
+                    <div class="payment-rows">
+                        <div class="payment-row">
+                            <span class="payment-row-label">Titular de la cuenta</span>
+                            <span class="payment-row-value" id="bankHolder">Detalles de Amor</span>
+                        </div>
+                        <div class="payment-row">
+                            <span class="payment-row-label">No. de cuenta</span>
+                            <span class="payment-row-value mono" id="bankAccount">— — —</span>
+                            <button class="copy-btn" id="copyAccountBtn" title="Copiar número de cuenta"><i
+                                    class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="payment-row">
+                            <span class="payment-row-label">Tipo de cuenta</span>
+                            <span class="payment-row-value">Monetaria</span>
+                        </div>
+                        <div class="payment-row">
+                            <span class="payment-row-label">Banco</span>
+                            <span class="payment-row-value">Banco Industrial, S.A.</span>
+                        </div>
+                    </div>
+                    <div class="payment-note">
+                        <i class="fas fa-circle-info"></i>
+                        Realiza tu transferencia y anota el número de comprobante abajo. Te confirmamos tu pedido por
+                        WhatsApp.
+                    </div>
+                    <div class="comprobante-group">
+                        <label for="clientComprobante">No. de comprobante / referencia (opcional)</label>
+                        <input type="text" id="clientComprobante" class="comprobante-input" placeholder="Ej. 12345678">
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-btns">
+                <button class="btn-primary" id="confirmOrderBtn">
+                    <i class="fas fa-check"></i> Confirmar y generar boleta
+                </button>
+                <button class="btn-secondary" id="cancelCheckoutBtn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <div class="success-icon"><i class="fas fa-heart"></i></div>
+            <h2 class="success-title">¡Pedido confirmado!</h2>
+            <p class="success-msg" id="successMsg">Tu boleta ha sido generada. Envíala por WhatsApp o descárgala.</p>
+            <div class="success-actions">
+                <button class="btn-whatsapp" id="sendWhatsappBtn">
+                    <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Enviar por WhatsApp
+                </button>
+                <button class="btn-primary" id="downloadPdfBtn"
+                    style="background:linear-gradient(130deg,#9b7dc8,#c4788a);">
+                    <i class="fas fa-file-arrow-down"></i> Descargar boleta PDF
+                </button>
+                <button class="btn-secondary" id="closeSuccessBtn">Seguir comprando</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <footer>
+        <div class="footer-logo">✦ Detalles de Amor</div>
+        <span class="footer-copy">© 2025 · Hecho con ternura en Guatemala 🇬🇹</span>
+        <div class="footer-legal">
+            <button class="footer-legal-link" onclick="openLegalModal('privacy')">Política de Privacidad</button>
+            <span class="footer-legal-sep">·</span>
+            <button class="footer-legal-link" onclick="openLegalModal('terms')">Términos y Condiciones</button>
+            <span class="footer-legal-sep">·</span>
+            <button class="footer-legal-link" onclick="openLegalModal('cookies')">Política de Cookies</button>
+        </div>
+        <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/50255630559" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                    class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+    </footer>
+
+    <!-- ===== MODAL LEGAL ===== -->
+    <div class="legal-overlay" id="legalOverlay">
+        <div class="legal-card">
+            <button class="legal-close" id="legalCloseBtn"><i class="fas fa-xmark"></i></button>
+            <div class="legal-content" id="legalContent"></div>
+        </div>
+    </div>
+
+    <!-- ===== COOKIE BANNER ===== -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-inner">
+            <div class="cookie-text">
+                <i class="fas fa-cookie-bite cookie-icon"></i>
+                <div>
+                    <strong>Usamos cookies</strong> para mejorar tu experiencia. Al continuar navegando aceptás su uso.
+                    <button class="cookie-more" onclick="openLegalModal('cookies')">Saber más</button>
+                </div>
+            </div>
+            <div class="cookie-btns">
+                <button class="cookie-reject" id="cookieReject">Rechazar</button>
+                <button class="cookie-accept" id="cookieAccept">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante WhatsApp -->
+    <a id="fabWhatsapp" href="https://wa.me/50255630559" target="_blank" rel="noopener" class="fab-whatsapp"
+        title="Contáctanos por WhatsApp">
+        <span class="fab-whatsapp-tooltip">¿Tienes dudas?</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Botón volver arriba -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
     </button>
-  </div>
-</header>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-deco hero-deco-1"></div>
-  <div class="hero-deco hero-deco-2"></div>
-  <div class="hero-eyebrow"><i class="fas fa-sparkles"></i> Regalos con corazón · Guatemala</div>
-  <h1>Pequeños gestos,<br><em>grandes amores</em></h1>
-  <p class="hero-sub">Globos, peluches, detalles únicos y moda romántica para celebrar cada momento especial.</p>
-  <div class="hero-divider"></div>
-</section>
+    <script>
+        /* ===== CATÁLOGO ===== */
+        const PRODUCTOS = [
+            { id: 1, nombre: "Globo Corazón Metalizado", precio: 150, existencias: 25, categoria: "globos", imagen: "Imagen1.png", descripcion: "Globo con forma de corazón, acabado perlado y metalizado. Perfecto para sorpresas románticas. Mide 45 cm de diámetro." },
+            { id: 2, nombre: "Globo Número 18 Dorado", precio: 150, existencias: 12, categoria: "globos", imagen: "imagen2.jpg", descripcion: "Globo número dorado de gran formato, ideal para cumpleaños y celebraciones especiales." },
+            { id: 3, nombre: "Peluche Oso Algodón", precio: 150, existencias: 8, categoria: "peluches", imagen: "imagen3.jpg", descripcion: "Oso de peluche ultra suave, material hipoalergénico. Disponible en talla mediana (35 cm)." },
+            { id: 4, nombre: "Peluche Conejo Cupcake", precio: 150, existencias: 6, categoria: "peluches", imagen: "imagen4.jpg", descripcion: "Conejito con diseño de cupcake pastel, ideal para regalo de cumpleaños o Pascua." },
+            { id: 5, nombre: "Caja Sorpresa con LED", precio: 150, existencias: 15, categoria: "detalles", imagen: "imagen5.jpg", descripcion: "Caja decorativa con tira LED multicolor integrada. Incluye espacio para carta personalizada." },
+            { id: 6, nombre: "Taza Personalizada", precio: 150, existencias: 30, categoria: "detalles", imagen: "imagen6.jpg", descripcion: "Taza de cerámica de alta calidad con frase grabada. Incluye estuche de regalo." },
+            { id: 7, nombre: "Sudadera Amore", precio: 150, existencias: 9, categoria: "ropa", imagen: "imagen7.jpg", descripcion: "Sudadera oversized con bordado de corazón artesanal. 80% algodón, muy suave al tacto." },
+            { id: 8, nombre: "Playera Parejas", precio: 150, existencias: 18, categoria: "ropa", imagen: "imagen8.jpg", descripcion: "Playera unisex con diseño gráfico romántico. Disponible en tallas S, M, L, XL." },
+            { id: 9, nombre: "Set Globos Arcoíris", precio: 150, existencias: 20, categoria: "globos", imagen: "imagen9.jpg", descripcion: "Set de 6 globos de látex en colores del arcoíris, tamaño estándar (30 cm)." },
+            { id: 10, nombre: "Peluche Dino Rosa", precio: 150, existencias: 4, categoria: "peluches", imagen: "imagen10.jpg", descripcion: "Dinosaurio de peluche color rosa pastel, edición especial. Mide 40 cm de largo." },
+            { id: 11, nombre: "Set Globos Lavanda", precio: 150, existencias: 14, categoria: "globos", imagen: "imagen11.jpg", descripcion: "Pack de 5 globos en tonos lila y malva, perfectos para decoración romántica." },
+            { id: 12, nombre: "Llavero Amor Eterno", precio: 150, existencias: 40, categoria: "detalles", imagen: "imagen12.jpg", descripcion: "Llavero de acrílico cortado a láser con mensaje tierno. Viene en caja pequeña." },
+            { id: 13, nombre: "Vela Aromática Rosa", precio: 150, existencias: 22, categoria: "detalles", imagen: "imagen13.jpg", descripcion: "Vela de soya con esencia de rosas y jazmín. Tiempo de quema: 40 horas." },
+            { id: 14, nombre: "Peluche Oso Gigante", precio: 150, existencias: 5, categoria: "peluches", imagen: "imagen14.jpg", descripcion: "Oso de peluche gigante de 80 cm. Suave, abraza y no suelta. El regalo más especial." },
+            { id: 15, nombre: "Kit Globos Cumpleaños", precio: 150, existencias: 18, categoria: "globos", imagen: "imagen15.jpg", descripcion: "Kit completo: 10 globos de látex + 2 globos metalizados + listón. Listo para decorar." },
+        ];
 
-<!-- ===== TIENDA ===== -->
-<main class="shop">
-  <div class="shop-header">
-    <h2 class="section-title">Colección</h2>
-    <span class="results-count" id="resultsCount"></span>
-  </div>
-  <div class="product-grid" id="productGrid"></div>
-</main>
+        const WHATSAPP_NUMBER = "50255630559";
 
-<!-- ===== MODAL PRODUCTO ===== -->
-<div class="modal-overlay" id="productModal">
-  <div class="modal-card">
-    <button class="modal-close" id="closeModalBtn"><i class="fas fa-xmark"></i></button>
-    <div class="modal-img-wrap">
-      <img id="modalImg" alt="Producto" loading="lazy">
-    </div>
-    <div class="modal-body">
-      <div class="modal-badge" id="modalCat"></div>
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <div class="modal-price" id="modalPrice"></div>
-      <p class="modal-desc" id="modalDesc"></p>
-      <div class="modal-stock">
-        <span class="stock-dot" id="stockDot"></span>
-        <span id="modalStock"></span>
-      </div>
-      <div class="qty-row">
-        <span class="qty-label">Cantidad</span>
-        <div class="qty-controls">
-          <button id="qtyMinus">−</button>
-          <span class="qty-num" id="qtyNum">1</span>
-          <button id="qtyPlus">+</button>
-        </div>
-      </div>
-      <button class="btn-primary" id="modalAddBtn">
-        <i class="fas fa-heart"></i> Añadir al carrito
-      </button>
-    </div>
-  </div>
-</div>
+        /* ===== DATOS BANCO INDUSTRIAL ===== */
+        const BANK_ACCOUNT = "000-000000-0";  // ← Cambia por tu número de cuenta real
+        const BANK_HOLDER = "Detalles de Amor";
+        // Inyectar en el HTML del checkout
+        document.addEventListener("DOMContentLoaded", () => {
+            const el = document.getElementById("bankAccount");
+            if (el) el.textContent = BANK_ACCOUNT;
+        });
 
-<!-- ===== CARRITO ===== -->
-<div class="cart-overlay" id="cartOverlay">
-  <div class="cart-panel">
-    <div class="cart-head">
-      <h3><i class="fas fa-bag-shopping" style="font-size:1rem; color:var(--c-lila-deep); margin-right:.5rem;"></i>Mi pedido</h3>
-      <button class="cart-close-btn" id="closeCartBtn"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-foot">
-      <div class="cart-total-row">
-        <span class="cart-total-label">Total estimado</span>
-        <span class="cart-total-amount" id="cartTotal">Q 0.00</span>
-      </div>
-      <button class="btn-checkout" id="checkoutBtn">
-        <i class="fas fa-lock"></i> Confirmar pedido
-      </button>
-      <button class="btn-empty-cart" id="emptyCartBtn">
-        <i class="fas fa-trash-can"></i> Vaciar carrito
-      </button>
-    </div>
-  </div>
-</div>
+        /* ===== STATE ===== */
+        let cart = [];
+        let currentCat = "todos";
+        let searchTerm = "";
+        let currentProduct = null;
+        let currentQty = 1;
+        let currentOrderData = null;
+        let currentPdfBlob = null;
 
-<!-- ===== CHECKOUT ===== -->
-<div class="checkout-overlay" id="checkoutOverlay">
-  <div class="checkout-modal">
-    <button class="modal-close" id="closeCheckoutBtn"><i class="fas fa-xmark"></i></button>
-    <h2 class="checkout-title">Finalizar pedido</h2>
-    <p class="checkout-sub">Completa tus datos para confirmar y recibir tu boleta.</p>
-    <div class="order-summary-box" id="checkoutSummary"></div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="clientName">Nombre *</label>
-        <input type="text" id="clientName" class="form-input" placeholder="Tu nombre" autocomplete="given-name">
-      </div>
-      <div class="form-group">
-        <label for="clientLastname">Apellido *</label>
-        <input type="text" id="clientLastname" class="form-input" placeholder="Tu apellido" autocomplete="family-name">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="clientPhone">WhatsApp / Teléfono *</label>
-      <input type="tel" id="clientPhone" class="form-input" placeholder="+502 0000 0000" autocomplete="tel">
-    </div>
-    <div class="form-group">
-      <label for="clientAddress">Dirección de entrega *</label>
-      <input type="text" id="clientAddress" class="form-input" placeholder="Zona, calle, número..." autocomplete="street-address">
-    </div>
-    <div class="form-group">
-      <label for="clientNote">Nota especial (opcional)</label>
-      <input type="text" id="clientNote" class="form-input" placeholder="Dedicatoria, color favorito...">
-    </div>
+        /* ===== DOM ===== */
+        const $ = id => document.getElementById(id);
+        const cartCount = $("cartCount");
+        const cartItems = $("cartItems");
+        const cartTotal = $("cartTotal");
+        const resultsCount = $("resultsCount");
+        const toast = $("toast");
 
-    <!-- PAGO POR TRANSFERENCIA -->
-    <div class="payment-section">
-      <div class="payment-label"><i class="fas fa-university"></i> Método de pago</div>
-      <div class="payment-box">
-        <div class="payment-badge"><i class="fas fa-building-columns"></i> Banco Industrial</div>
-        <div class="payment-rows">
-          <div class="payment-row">
-            <span class="payment-row-label">Titular de la cuenta</span>
-            <span class="payment-row-value" id="bankHolder">Detalles de Amor</span>
-          </div>
-          <div class="payment-row">
-            <span class="payment-row-label">No. de cuenta</span>
-            <span class="payment-row-value mono" id="bankAccount">— — —</span>
-          </div>
-          <div class="payment-row">
-            <span class="payment-row-label">Tipo de cuenta</span>
-            <span class="payment-row-value">Monetaria</span>
-          </div>
-          <div class="payment-row">
-            <span class="payment-row-label">Banco</span>
-            <span class="payment-row-value">Banco Industrial, S.A.</span>
-          </div>
-        </div>
-        <div class="payment-note">
-          <i class="fas fa-circle-info"></i>
-          Realiza tu transferencia y anota el número de comprobante abajo. Te confirmamos tu pedido por WhatsApp.
-        </div>
-        <div class="comprobante-group">
-          <label for="clientComprobante">No. de comprobante / referencia (opcional)</label>
-          <input type="text" id="clientComprobante" class="comprobante-input" placeholder="Ej. 12345678">
-        </div>
-      </div>
-    </div>
+        /* ===== TOAST ===== */
+        let toastTimer;
+        function showToast(msg, icon = "💗") {
+            toast.textContent = `${icon} ${msg}`;
+            toast.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+        }
 
-    <div class="checkout-btns">
-      <button class="btn-primary" id="confirmOrderBtn">
-        <i class="fas fa-check"></i> Confirmar y generar boleta
-      </button>
-      <button class="btn-secondary" id="cancelCheckoutBtn">Cancelar</button>
-    </div>
-  </div>
-</div>
+        /* ===== STORAGE ===== */
+        function saveCart() { try { localStorage.setItem("dda_cart_v3", JSON.stringify(cart)); } catch (e) { } }
+        function loadCart() {
+            try {
+                const d = localStorage.getItem("dda_cart_v3");
+                if (d) { cart = JSON.parse(d); if (!Array.isArray(cart)) cart = []; }
+            } catch (e) { cart = []; }
+        }
+        function getQty(id) { const i = cart.find(x => x.id === id); return i ? i.qty : 0; }
+        function maxAvail(p) { return Math.max(0, p.existencias - getQty(p.id)); }
 
-<!-- ===== SUCCESS ===== -->
-<div class="success-overlay" id="successOverlay">
-  <div class="success-card">
-    <div class="success-icon"><i class="fas fa-heart"></i></div>
-    <h2 class="success-title">¡Pedido confirmado!</h2>
-    <p class="success-msg" id="successMsg">Tu boleta ha sido generada. Envíala por WhatsApp o descárgala.</p>
-    <div class="success-actions">
-      <button class="btn-whatsapp" id="sendWhatsappBtn">
-        <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Enviar por WhatsApp
-      </button>
-      <button class="btn-primary" id="downloadPdfBtn" style="background:linear-gradient(130deg,#9b7dc8,#c4788a);">
-        <i class="fas fa-file-arrow-down"></i> Descargar boleta PDF
-      </button>
-      <button class="btn-secondary" id="closeSuccessBtn">Seguir comprando</button>
-    </div>
-  </div>
-</div>
+        /* ===== CART OPERATIONS ===== */
+        function addToCart(id, qty) {
+            const p = PRODUCTOS.find(x => x.id === id);
+            if (!p) return false;
+            const inCart = getQty(id);
+            if (inCart + qty > p.existencias) {
+                showToast(`Solo quedan ${p.existencias - inCart} unidades`, "⚠️");
+                return false;
+            }
+            const existing = cart.find(x => x.id === id);
+            if (existing) existing.qty += qty;
+            else cart.push({ id, qty });
+            saveCart();
+            refreshCartUI();
+            refreshGrid();
+            return true;
+        }
 
-<div class="toast" id="toast"></div>
+        function removeFromCart(id) {
+            cart = cart.filter(x => x.id !== id);
+            saveCart();
+            refreshCartUI();
+            refreshGrid();
+        }
 
-<footer>
-  <div class="footer-logo">✦ Detalles de Amor</div>
-  <span class="footer-copy">© 2025 · Hecho con ternura en Guatemala 🇬🇹</span>
-  <div class="footer-socials">
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-whatsapp"></i></a>
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-  </div>
-</footer>
+        function changeQty(id, delta) {
+            const p = PRODUCTOS.find(x => x.id === id);
+            const item = cart.find(x => x.id === id);
+            if (!item || !p) return;
+            const newQty = item.qty + delta;
+            if (newQty <= 0) { removeFromCart(id); return; }
+            if (newQty > p.existencias) { showToast("Sin más stock disponible", "⚠️"); return; }
+            item.qty = newQty;
+            saveCart();
+            refreshCartUI();
+            refreshGrid();
+        }
 
-<script>
-/* ===== CATÁLOGO ===== */
-const PRODUCTOS = [
-  { id:1,  nombre:"Globo Corazón Metalizado",  precio:45,  existencias:25, categoria:"globos",   imagen:"imagen1.jpg",  descripcion:"Globo con forma de corazón, acabado perlado y metalizado. Perfecto para sorpresas románticas. Mide 45 cm de diámetro." },
-  { id:2,  nombre:"Globo Número 18 Dorado",    precio:68,  existencias:12, categoria:"globos",   imagen:"imagen2.jpg",  descripcion:"Globo número dorado de gran formato, ideal para cumpleaños y celebraciones especiales." },
-  { id:3,  nombre:"Peluche Oso Algodón",       precio:189, existencias:8,  categoria:"peluches", imagen:"imagen3.jpg",  descripcion:"Oso de peluche ultra suave, material hipoalergénico. Disponible en talla mediana (35 cm)." },
-  { id:4,  nombre:"Peluche Conejo Cupcake",    precio:159, existencias:6,  categoria:"peluches", imagen:"imagen4.jpg",  descripcion:"Conejito con diseño de cupcake pastel, ideal para regalo de cumpleaños o Pascua." },
-  { id:5,  nombre:"Caja Sorpresa con LED",     precio:275, existencias:15, categoria:"detalles", imagen:"imagen5.jpg",  descripcion:"Caja decorativa con tira LED multicolor integrada. Incluye espacio para carta personalizada." },
-  { id:6,  nombre:"Taza Personalizada",        precio:95,  existencias:30, categoria:"detalles", imagen:"imagen6.jpg",  descripcion:"Taza de cerámica de alta calidad con frase grabada. Incluye estuche de regalo." },
-  { id:7,  nombre:"Sudadera Amore",            precio:320, existencias:9,  categoria:"ropa",     imagen:"imagen7.jpg",  descripcion:"Sudadera oversized con bordado de corazón artesanal. 80% algodón, muy suave al tacto." },
-  { id:8,  nombre:"Playera Parejas",           precio:190, existencias:18, categoria:"ropa",     imagen:"imagen8.jpg",  descripcion:"Playera unisex con diseño gráfico romántico. Disponible en tallas S, M, L, XL." },
-  { id:9,  nombre:"Set Globos Arcoíris",       precio:79,  existencias:20, categoria:"globos",   imagen:"imagen9.jpg",  descripcion:"Set de 6 globos de látex en colores del arcoíris, tamaño estándar (30 cm)." },
-  { id:10, nombre:"Peluche Dino Rosa",         precio:210, existencias:4,  categoria:"peluches", imagen:"imagen10.jpg", descripcion:"Dinosaurio de peluche color rosa pastel, edición especial. Mide 40 cm de largo." },
-  { id:11, nombre:"Set Globos Lavanda",        precio:79,  existencias:14, categoria:"globos",   imagen:"imagen11.jpg", descripcion:"Pack de 5 globos en tonos lila y malva, perfectos para decoración romántica." },
-  { id:12, nombre:"Llavero Amor Eterno",       precio:35,  existencias:40, categoria:"detalles", imagen:"imagen12.jpg", descripcion:"Llavero de acrílico cortado a láser con mensaje tierno. Viene en caja pequeña." },
-  { id:13, nombre:"Vela Aromática Rosa",       precio:120, existencias:22, categoria:"detalles", imagen:"imagen13.jpg", descripcion:"Vela de soya con esencia de rosas y jazmín. Tiempo de quema: 40 horas." },
-  { id:14, nombre:"Peluche Oso Gigante",       precio:450, existencias:5,  categoria:"peluches", imagen:"imagen14.jpg", descripcion:"Oso de peluche gigante de 80 cm. Suave, abraza y no suelta. El regalo más especial." },
-  { id:15, nombre:"Kit Globos Cumpleaños",     precio:150, existencias:18, categoria:"globos",   imagen:"imagen15.jpg", descripcion:"Kit completo: 10 globos de látex + 2 globos metalizados + listón. Listo para decorar." },
-];
+        /* ===== CART UI ===== */
+        function refreshCartUI() {
+            const total = cart.reduce((s, i) => {
+                const p = PRODUCTOS.find(x => x.id === i.id);
+                return s + (p ? p.precio * i.qty : 0);
+            }, 0);
+            const totalItems = cart.reduce((s, i) => s + i.qty, 0);
 
-const WHATSAPP_NUMBER = "50255630559";
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = `Q ${total.toFixed(2)}`;
 
-/* ===== DATOS BANCO INDUSTRIAL ===== */
-const BANK_ACCOUNT = "000-000000-0";  // ← Cambia por tu número de cuenta real
-const BANK_HOLDER  = "Detalles de Amor";
-// Inyectar en el HTML del checkout
-document.addEventListener("DOMContentLoaded", () => {
-  const el = document.getElementById("bankAccount");
-  if (el) el.textContent = BANK_ACCOUNT;
-});
-
-/* ===== STATE ===== */
-let cart = [];
-let currentCat = "todos";
-let searchTerm = "";
-let currentProduct = null;
-let currentQty = 1;
-let currentOrderData = null;
-let currentPdfBlob = null;
-
-/* ===== DOM ===== */
-const $ = id => document.getElementById(id);
-const productGrid  = $("productGrid");
-const cartCount    = $("cartCount");
-const cartItems    = $("cartItems");
-const cartTotal    = $("cartTotal");
-const resultsCount = $("resultsCount");
-const toast        = $("toast");
-
-/* ===== TOAST ===== */
-let toastTimer;
-function showToast(msg, icon = "💗") {
-  toast.textContent = `${icon} ${msg}`;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
-}
-
-/* ===== STORAGE ===== */
-function saveCart() { try { localStorage.setItem("dda_cart_v3", JSON.stringify(cart)); } catch(e){} }
-function loadCart() {
-  try {
-    const d = localStorage.getItem("dda_cart_v3");
-    if (d) { cart = JSON.parse(d); if (!Array.isArray(cart)) cart = []; }
-  } catch(e) { cart = []; }
-}
-function getQty(id)  { const i = cart.find(x => x.id === id); return i ? i.qty : 0; }
-function maxAvail(p) { return Math.max(0, p.existencias - getQty(p.id)); }
-
-/* ===== CART OPERATIONS ===== */
-function addToCart(id, qty) {
-  const p = PRODUCTOS.find(x => x.id === id);
-  if (!p) return false;
-  const inCart = getQty(id);
-  if (inCart + qty > p.existencias) {
-    showToast(`Solo quedan ${p.existencias - inCart} unidades`, "⚠️");
-    return false;
-  }
-  const existing = cart.find(x => x.id === id);
-  if (existing) existing.qty += qty;
-  else cart.push({ id, qty });
-  saveCart();
-  refreshCartUI();
-  refreshGrid();
-  return true;
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(x => x.id !== id);
-  saveCart();
-  refreshCartUI();
-  refreshGrid();
-}
-
-function changeQty(id, delta) {
-  const p = PRODUCTOS.find(x => x.id === id);
-  const item = cart.find(x => x.id === id);
-  if (!item || !p) return;
-  const newQty = item.qty + delta;
-  if (newQty <= 0) { removeFromCart(id); return; }
-  if (newQty > p.existencias) { showToast("Sin más stock disponible", "⚠️"); return; }
-  item.qty = newQty;
-  saveCart();
-  refreshCartUI();
-  refreshGrid();
-}
-
-/* ===== CART UI ===== */
-function refreshCartUI() {
-  const total = cart.reduce((s, i) => {
-    const p = PRODUCTOS.find(x => x.id === i.id);
-    return s + (p ? p.precio * i.qty : 0);
-  }, 0);
-  const totalItems = cart.reduce((s, i) => s + i.qty, 0);
-
-  cartCount.textContent = totalItems;
-  cartTotal.textContent = `Q ${total.toFixed(2)}`;
-
-  if (cart.length === 0) {
-    cartItems.innerHTML = `
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
       <div class="cart-empty">
         <i class="fas fa-heart-crack"></i>
         <p>Tu carrito está vacío.<br>¡Agrega algo especial!</p>
       </div>`;
-    return;
-  }
+                return;
+            }
 
-  cartItems.innerHTML = cart.map(item => {
-    const p = PRODUCTOS.find(x => x.id === item.id);
-    if (!p) return "";
-    const sub = (p.precio * item.qty).toFixed(2);
-    return `
+            cartItems.innerHTML = cart.map(item => {
+                const p = PRODUCTOS.find(x => x.id === item.id);
+                if (!p) return "";
+                const sub = (p.precio * item.qty).toFixed(2);
+                return `
       <div class="cart-item">
         <img class="cart-item-img" src="${p.imagen}" alt="${p.nombre}"
              onerror="this.src='https://placehold.co/70x70/fdf0f3/c4788a?text=♥'">
@@ -1001,509 +3008,768 @@ function refreshCartUI() {
         </div>
         <div class="cart-item-subtotal">Q ${sub}</div>
       </div>`;
-  }).join("");
-}
+            }).join("");
+        }
 
-/* ===== GRID ===== */
-function refreshGrid() {
-  const filtered = PRODUCTOS.filter(p => {
-    const matchCat = currentCat === "todos" || p.categoria === currentCat;
-    const term = searchTerm.toLowerCase();
-    const matchSearch = !term || p.nombre.toLowerCase().includes(term) || p.descripcion.toLowerCase().includes(term);
-    return matchCat && matchSearch;
-  });
+        /* ===== HELPERS ===== */
+        const CAT_LABELS = { globos: "Globos 🎈", peluches: "Peluches 🧸", detalles: "Detalles ✨", ropa: "Ropa 💕" };
+        const CAT_ORDER = ["globos", "peluches", "detalles", "ropa"];
 
-  resultsCount.textContent = `${filtered.length} producto${filtered.length !== 1 ? "s" : ""}`;
+        function buildCard(p, idx) {
+            const avail = maxAvail(p);
+            const low = avail > 0 && avail <= 3;
+            const card = document.createElement("div");
+            card.className = "product-card";
+            card.style.animationDelay = `${idx * 0.045}s`;
+            card.innerHTML = `
+    <div class="card-thumb">
+      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"
+           onerror="this.src='https://placehold.co/270x270/fdf0f3/c4788a?text=♥'">
+      <span class="badge-cat">${p.categoria}</span>
+      ${low ? `<span class="badge-stock-low">Últimas ${avail}</span>` : ""}
+      ${avail === 0 ? `<span class="badge-stock-low" style="background:var(--c-muted)">Agotado</span>` : ""}
+    </div>
+    <div class="card-body">
+      <h3>${p.nombre}</h3>
+      <div class="card-price">Q ${p.precio.toFixed(2)}</div>
+      <div class="card-cta">Ver detalle <i class="fas fa-arrow-right"></i></div>
+    </div>`;
+            card.addEventListener("click", () => openProductModal(p));
+            return card;
+        }
 
-  if (filtered.length === 0) {
-    productGrid.innerHTML = `
+        function buildCarousel(products) {
+            const wrap = document.createElement("div");
+            wrap.className = "carousel-wrap";
+
+            const btnL = document.createElement("button");
+            btnL.className = "carousel-arrow left"; btnL.innerHTML = `<i class="fas fa-chevron-left"></i>`;
+            const btnR = document.createElement("button");
+            btnR.className = "carousel-arrow right"; btnR.innerHTML = `<i class="fas fa-chevron-right"></i>`;
+
+            const track = document.createElement("div");
+            track.className = "carousel-track";
+            products.forEach((p, i) => track.appendChild(buildCard(p, i)));
+
+            wrap.appendChild(btnL);
+            wrap.appendChild(track);
+            wrap.appendChild(btnR);
+
+            const SCROLL_AMT = 240;
+            btnL.addEventListener("click", () => track.scrollBy({ left: -SCROLL_AMT, behavior: "smooth" }));
+            btnR.addEventListener("click", () => track.scrollBy({ left: SCROLL_AMT, behavior: "smooth" }));
+
+            function updateArrows() {
+                btnL.classList.toggle("hidden", track.scrollLeft <= 4);
+                btnR.classList.toggle("hidden", track.scrollLeft + track.clientWidth >= track.scrollWidth - 4);
+            }
+            track.addEventListener("scroll", updateArrows, { passive: true });
+            // Run after layout
+            requestAnimationFrame(updateArrows);
+
+            return wrap;
+        }
+
+        /* ===== GRID ===== */
+        function refreshGrid() {
+            const filtered = PRODUCTOS.filter(p => {
+                const matchCat = currentCat === "todos" || p.categoria === currentCat;
+                const term = searchTerm.toLowerCase();
+                const matchSearch = !term || p.nombre.toLowerCase().includes(term) || p.descripcion.toLowerCase().includes(term);
+                return matchCat && matchSearch;
+            });
+
+            const shopContent = document.getElementById("shopContent");
+            resultsCount.textContent = `${filtered.length} producto${filtered.length !== 1 ? "s" : ""}`;
+            shopContent.innerHTML = "";
+
+            if (filtered.length === 0) {
+                shopContent.innerHTML = `
       <div class="empty-state">
         <i class="fas fa-magnifying-glass"></i>
         <p>No se encontraron productos.<br><small>Intenta con otra búsqueda.</small></p>
       </div>`;
-    return;
-  }
+                return;
+            }
 
-  productGrid.innerHTML = "";
-  filtered.forEach((p, idx) => {
-    const avail = maxAvail(p);
-    const low = avail > 0 && avail <= 3;
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.style.animationDelay = `${idx * 0.045}s`;
-    card.innerHTML = `
-      <div class="card-thumb">
-        <img src="${p.imagen}" alt="${p.nombre}" loading="lazy"
-             onerror="this.src='https://placehold.co/270x270/fdf0f3/c4788a?text=♥'">
-        <span class="badge-cat">${p.categoria}</span>
-        ${low ? `<span class="badge-stock-low">Últimas ${avail}</span>` : ""}
-        ${avail === 0 ? `<span class="badge-stock-low" style="background:var(--c-muted)">Agotado</span>` : ""}
-      </div>
-      <div class="card-body">
-        <h3>${p.nombre}</h3>
-        <div class="card-price">Q ${p.precio.toFixed(2)}</div>
-        <div class="card-cta">Ver detalle <i class="fas fa-arrow-right"></i></div>
-      </div>`;
-    card.addEventListener("click", () => openProductModal(p));
-    productGrid.appendChild(card);
-  });
-}
+            // Carousels por categoría solo cuando se muestra "Todos" sin búsqueda
+            if (currentCat === "todos" && !searchTerm) {
+                CAT_ORDER.forEach(cat => {
+                    const items = filtered.filter(p => p.categoria === cat);
+                    if (!items.length) return;
 
-/* ===== MODAL PRODUCTO ===== */
-function openProductModal(p) {
-  currentProduct = p;
-  currentQty = 1;
-  const avail = maxAvail(p);
+                    const section = document.createElement("div");
+                    section.className = "category-section";
+                    section.innerHTML = `
+        <div class="category-section-header">
+          <div class="category-section-title">
+            ${CAT_LABELS[cat]}
+            <span class="cat-pill">${items.length} item${items.length !== 1 ? "s" : ""}</span>
+          </div>
+        </div>`;
+                    section.appendChild(buildCarousel(items));
+                    shopContent.appendChild(section);
+                });
+            } else {
+                // Grid normal para filtros o búsqueda
+                const grid = document.createElement("div");
+                grid.className = "product-grid";
+                filtered.forEach((p, idx) => grid.appendChild(buildCard(p, idx)));
+                shopContent.appendChild(grid);
+            }
+        }
 
-  $("modalImg").src = p.imagen;
-  $("modalImg").onerror = function(){ this.src = "https://placehold.co/500x500/fdf0f3/c4788a?text=♥"; };
-  $("modalCat").innerHTML = `<i class="fas fa-tag" style="font-size:.6rem;"></i>${p.categoria.toUpperCase()}`;
-  $("modalTitle").textContent = p.nombre;
-  $("modalPrice").textContent = `Q ${p.precio.toFixed(2)}`;
-  $("modalDesc").textContent = p.descripcion;
+        /* ===== MODAL PRODUCTO ===== */
+        function openProductModal(p) {
+            currentProduct = p;
+            currentQty = 1;
+            const avail = maxAvail(p);
 
-  const dot = $("stockDot");
-  const stockTxt = $("modalStock");
-  if (avail <= 0)      { dot.className = "stock-dot out"; stockTxt.textContent = "Agotado"; }
-  else if (avail <= 3) { dot.className = "stock-dot low"; stockTxt.textContent = `Últimas ${avail} unidades`; }
-  else                 { dot.className = "stock-dot";     stockTxt.textContent = `${avail} en stock`; }
+            $("modalImg").src = p.imagen;
+            $("modalImg").onerror = function () { this.src = "https://placehold.co/500x500/fdf0f3/c4788a?text=♥"; };
+            $("modalCat").innerHTML = `<i class="fas fa-tag" style="font-size:.6rem;"></i>${p.categoria.toUpperCase()}`;
+            $("modalTitle").textContent = p.nombre;
+            $("modalPrice").textContent = `Q ${p.precio.toFixed(2)}`;
+            $("modalDesc").textContent = p.descripcion;
 
-  $("qtyNum").textContent = 1;
-  const btn = $("modalAddBtn");
-  if (avail <= 0) {
-    btn.disabled = true;
-    btn.innerHTML = `<i class="fas fa-ban"></i> Sin stock`;
-  } else {
-    btn.disabled = false;
-    btn.innerHTML = `<i class="fas fa-heart"></i> Añadir al carrito`;
-  }
+            const dot = $("stockDot");
+            const stockTxt = $("modalStock");
+            if (avail <= 0) { dot.className = "stock-dot out"; stockTxt.textContent = "Agotado"; }
+            else if (avail <= 3) { dot.className = "stock-dot low"; stockTxt.textContent = `Últimas ${avail} unidades`; }
+            else { dot.className = "stock-dot"; stockTxt.textContent = `${avail} en stock`; }
 
-  $("productModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
+            $("qtyNum").textContent = 1;
+            const btn = $("modalAddBtn");
+            if (avail <= 0) {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fas fa-ban"></i> Sin stock`;
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fas fa-heart"></i> Añadir al carrito`;
+            }
 
-$("closeModalBtn").onclick = closeProductModal;
-$("productModal").addEventListener("click", e => { if (e.target === $("productModal")) closeProductModal(); });
-function closeProductModal() {
-  $("productModal").classList.remove("open");
-  document.body.style.overflow = "";
-}
+            $("productModal").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
 
-$("qtyMinus").onclick = () => {
-  if (currentQty > 1) { currentQty--; $("qtyNum").textContent = currentQty; }
-};
-$("qtyPlus").onclick = () => {
-  if (!currentProduct) return;
-  if (currentQty < maxAvail(currentProduct)) { currentQty++; $("qtyNum").textContent = currentQty; }
-  else showToast("Máximo disponible alcanzado", "⚠️");
-};
-$("modalAddBtn").onclick = () => {
-  if (!currentProduct) return;
-  if (addToCart(currentProduct.id, currentQty)) {
-    closeProductModal();
-    showToast(`${currentProduct.nombre} agregado`, "💗");
-  }
-};
+        $("closeModalBtn").onclick = closeProductModal;
+        $("productModal").addEventListener("click", e => { if (e.target === $("productModal")) closeProductModal(); });
+        function closeProductModal() {
+            $("productModal").classList.remove("open");
+            document.body.style.overflow = "";
+        }
 
-/* ===== CARRITO ===== */
-$("openCartBtn").onclick = () => $("cartOverlay").classList.add("open");
-$("closeCartBtn").onclick = () => $("cartOverlay").classList.remove("open");
-$("cartOverlay").addEventListener("click", e => { if (e.target === $("cartOverlay")) $("cartOverlay").classList.remove("open"); });
-$("emptyCartBtn").onclick = () => {
-  if (!cart.length) return;
-  cart = [];
-  saveCart();
-  refreshCartUI();
-  refreshGrid();
-  showToast("Carrito vaciado", "🗑️");
-};
+        $("qtyMinus").onclick = () => {
+            if (currentQty > 1) { currentQty--; $("qtyNum").textContent = currentQty; }
+        };
+        $("qtyPlus").onclick = () => {
+            if (!currentProduct) return;
+            if (currentQty < maxAvail(currentProduct)) { currentQty++; $("qtyNum").textContent = currentQty; }
+            else showToast("Máximo disponible alcanzado", "⚠️");
+        };
+        $("modalAddBtn").onclick = () => {
+            if (!currentProduct) return;
+            if (addToCart(currentProduct.id, currentQty)) {
+                closeProductModal();
+                showToast(`${currentProduct.nombre} agregado`, "💗");
+            }
+        };
 
-/* ===== CHECKOUT ===== */
-$("checkoutBtn").onclick = openCheckout;
-function openCheckout() {
-  if (!cart.length) { showToast("Agrega productos primero", "⚠️"); return; }
-  $("cartOverlay").classList.remove("open");
+        /* ===== CARRITO ===== */
+        $("openCartBtn").onclick = () => $("cartOverlay").classList.add("open");
+        $("closeCartBtn").onclick = () => $("cartOverlay").classList.remove("open");
+        $("cartOverlay").addEventListener("click", e => { if (e.target === $("cartOverlay")) $("cartOverlay").classList.remove("open"); });
+        $("emptyCartBtn").onclick = () => {
+            if (!cart.length) return;
+            cart = [];
+            saveCart();
+            refreshCartUI();
+            refreshGrid();
+            showToast("Carrito vaciado", "🗑️");
+        };
 
-  const total = cart.reduce((s, i) => {
-    const p = PRODUCTOS.find(x => x.id === i.id);
-    return s + (p ? p.precio * i.qty : 0);
-  }, 0);
+        /* ===== CHECKOUT ===== */
+        $("checkoutBtn").onclick = openCheckout;
+        function openCheckout() {
+            if (!cart.length) { showToast("Agrega productos primero", "⚠️"); return; }
+            $("cartOverlay").classList.remove("open");
 
-  const rows = cart.map(i => {
-    const p = PRODUCTOS.find(x => x.id === i.id);
-    return p ? `<div class="summary-item"><span>${p.nombre} × ${i.qty}</span><span>Q ${(p.precio * i.qty).toFixed(2)}</span></div>` : "";
-  }).join("");
+            const total = cart.reduce((s, i) => {
+                const p = PRODUCTOS.find(x => x.id === i.id);
+                return s + (p ? p.precio * i.qty : 0);
+            }, 0);
 
-  $("checkoutSummary").innerHTML = `
+            const rows = cart.map(i => {
+                const p = PRODUCTOS.find(x => x.id === i.id);
+                return p ? `<div class="summary-item"><span>${p.nombre} × ${i.qty}</span><span>Q ${(p.precio * i.qty).toFixed(2)}</span></div>` : "";
+            }).join("");
+
+            $("checkoutSummary").innerHTML = `
     <div class="order-summary-title">Resumen del pedido</div>
     ${rows}
     <div class="summary-total"><span>Total</span><span>Q ${total.toFixed(2)}</span></div>`;
 
-  $("checkoutOverlay").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
+            $("checkoutOverlay").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
 
-$("closeCheckoutBtn").onclick = closeCheckout;
-$("cancelCheckoutBtn").onclick = closeCheckout;
-$("checkoutOverlay").addEventListener("click", e => { if (e.target === $("checkoutOverlay")) closeCheckout(); });
-function closeCheckout() {
-  $("checkoutOverlay").classList.remove("open");
-  document.body.style.overflow = "";
-}
+        $("closeCheckoutBtn").onclick = closeCheckout;
+        $("cancelCheckoutBtn").onclick = closeCheckout;
+        $("checkoutOverlay").addEventListener("click", e => { if (e.target === $("checkoutOverlay")) closeCheckout(); });
+        function closeCheckout() {
+            $("checkoutOverlay").classList.remove("open");
+            document.body.style.overflow = "";
+        }
 
-/* ===== CONFIRMAR ORDEN ===== */
-$("confirmOrderBtn").onclick = confirmOrder;
+        /* ===== CONFIRMAR ORDEN ===== */
+        $("confirmOrderBtn").onclick = confirmOrder;
 
-async function confirmOrder() {
-  const name       = $("clientName").value.trim();
-  const lastname   = $("clientLastname").value.trim();
-  const phone      = $("clientPhone").value.trim();
-  const address    = $("clientAddress").value.trim();
-  const note       = $("clientNote").value.trim();
-  const comprobante = $("clientComprobante").value.trim();
+        async function confirmOrder() {
+            const name = $("clientName").value.trim();
+            const lastname = $("clientLastname").value.trim();
+            const phone = $("clientPhone").value.trim();
+            const address = $("clientAddress").value.trim();
+            const note = $("clientNote").value.trim();
+            const comprobante = $("clientComprobante").value.trim();
 
-  let valid = true;
-  [$("clientName"), $("clientLastname"), $("clientPhone"), $("clientAddress")].forEach(el => {
-    el.classList.remove("error");
-    if (!el.value.trim()) { el.classList.add("error"); valid = false; }
-  });
-  if (!valid) { showToast("Completa los campos obligatorios", "⚠️"); return; }
+            let valid = true;
+            [$("clientName"), $("clientLastname"), $("clientPhone"), $("clientAddress")].forEach(el => {
+                el.classList.remove("error");
+                if (!el.value.trim()) { el.classList.add("error"); valid = false; }
+            });
+            if (!valid) { showToast("Completa los campos obligatorios", "⚠️"); return; }
 
-  const orderItems = cart.map(i => {
-    const p = PRODUCTOS.find(x => x.id === i.id);
-    return p ? { nombre: p.nombre, precio: p.precio, qty: i.qty, subtotal: p.precio * i.qty } : null;
-  }).filter(Boolean);
+            const orderItems = cart.map(i => {
+                const p = PRODUCTOS.find(x => x.id === i.id);
+                return p ? { nombre: p.nombre, precio: p.precio, qty: i.qty, subtotal: p.precio * i.qty } : null;
+            }).filter(Boolean);
 
-  const total   = orderItems.reduce((s, i) => s + i.subtotal, 0);
-  const orderNum = "DDA-" + Date.now().toString().slice(-6);
-  const now     = new Date();
-  const dateStr = now.toLocaleDateString("es-GT", { day:"2-digit", month:"long", year:"numeric" });
-  const timeStr = now.toLocaleTimeString("es-GT", { hour:"2-digit", minute:"2-digit" });
+            const total = orderItems.reduce((s, i) => s + i.subtotal, 0);
+            const orderNum = "DDA-" + Date.now().toString().slice(-6);
+            const now = new Date();
+            const dateStr = now.toLocaleDateString("es-GT", { day: "2-digit", month: "long", year: "numeric" });
+            const timeStr = now.toLocaleTimeString("es-GT", { hour: "2-digit", minute: "2-digit" });
 
-  currentOrderData = { orderNum, name, lastname, phone, address, note, comprobante, orderItems, total, dateStr, timeStr };
+            currentOrderData = { orderNum, name, lastname, phone, address, note, comprobante, orderItems, total, dateStr, timeStr };
 
-  // Mostrar loading
-  $("loadingOverlay").classList.add("open");
-  closeCheckout();
+            // Mostrar loading
+            $("loadingOverlay").classList.add("open");
+            closeCheckout();
 
-  try {
-    const blob = await generatePDF(currentOrderData);
-    currentPdfBlob = blob;
-  } catch(err) {
-    console.error("PDF error:", err);
-    currentPdfBlob = null;
-  }
+            try {
+                const blob = await generatePDF(currentOrderData);
+                currentPdfBlob = blob;
+            } catch (err) {
+                console.error("PDF error:", err);
+                currentPdfBlob = null;
+            }
 
-  $("loadingOverlay").classList.remove("open");
+            $("loadingOverlay").classList.remove("open");
 
-  // Limpiar carrito
-  cart = [];
-  saveCart();
-  refreshCartUI();
-  refreshGrid();
+            // Limpiar carrito
+            cart = [];
+            saveCart();
+            refreshCartUI();
+            refreshGrid();
 
-  $("successMsg").textContent = `Boleta #${orderNum} generada. Envíala por WhatsApp o descárgala.`;
-  $("successOverlay").classList.add("open");
-  document.body.style.overflow = "hidden";
+            $("successMsg").textContent = `Boleta #${orderNum} generada. Envíala por WhatsApp o descárgala.`;
+            $("successOverlay").classList.add("open");
+            document.body.style.overflow = "hidden";
 
-  // Limpiar form
-  ["clientName","clientLastname","clientPhone","clientAddress","clientNote","clientComprobante"].forEach(id => { $(id).value = ""; });
-}
+            // Limpiar form
+            ["clientName", "clientLastname", "clientPhone", "clientAddress", "clientNote", "clientComprobante"].forEach(id => { $(id).value = ""; });
+        }
 
-/* ===== GENERAR PDF CON jsPDF PURO (sin html2canvas) ===== */
-async function generatePDF(data) {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
-  const W = 210;
-  const margin = 15;
-  const inner  = W - margin * 2;
-  let y = 0;
+        /* ===== GENERAR PDF CON jsPDF PURO (sin html2canvas) ===== */
+        async function generatePDF(data) {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+            const W = 210;
+            const margin = 15;
+            const inner = W - margin * 2;
+            let y = 0;
 
-  /* ---- Header ---- */
-  pdf.setFillColor(196, 120, 138);
-  pdf.rect(0, 0, W / 2, 42, "F");
-  pdf.setFillColor(155, 125, 200);
-  pdf.rect(W / 2, 0, W / 2, 42, "F");
+            /* ---- Header ---- */
+            pdf.setFillColor(196, 120, 138);
+            pdf.rect(0, 0, W / 2, 42, "F");
+            pdf.setFillColor(155, 125, 200);
+            pdf.rect(W / 2, 0, W / 2, 42, "F");
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(18);
-  pdf.setTextColor(255, 255, 255);
-  pdf.text("Detalles de Amor", margin, 16);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(18);
+            pdf.setTextColor(255, 255, 255);
+            pdf.text("Detalles de Amor", margin, 16);
 
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(9);
-  pdf.setTextColor(255, 255, 255);
-  pdf.text("Regalos con corazon  |  Guatemala", margin, 23);
-  pdf.text("Tel: +502 5563 0559", margin, 29);
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(9);
+            pdf.setTextColor(255, 255, 255);
+            pdf.text("Regalos con corazon  |  Guatemala", margin, 23);
+            pdf.text("Tel: +502 5563 0559", margin, 29);
 
-  /* Order num badge */
-  pdf.setFillColor(255, 255, 255, 0.2);
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(255, 255, 255);
-  pdf.text(data.orderNum, W - margin, 16, { align: "right" });
+            /* Order num badge */
+            pdf.setFillColor(255, 255, 255, 0.2);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(10);
+            pdf.setTextColor(255, 255, 255);
+            pdf.text(data.orderNum, W - margin, 16, { align: "right" });
 
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(9);
-  pdf.text("Fecha: " + data.dateStr, W - margin, 23, { align: "right" });
-  pdf.text("Hora:  " + data.timeStr, W - margin, 29, { align: "right" });
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(9);
+            pdf.text("Fecha: " + data.dateStr, W - margin, 23, { align: "right" });
+            pdf.text("Hora:  " + data.timeStr, W - margin, 29, { align: "right" });
 
-  y = 51;
+            y = 51;
 
-  /* ---- Cliente ---- */
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(7.5);
-  pdf.setTextColor(155, 125, 200);
-  pdf.text("DATOS DEL CLIENTE", margin, y);
-  y += 4;
+            /* ---- Cliente ---- */
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(7.5);
+            pdf.setTextColor(155, 125, 200);
+            pdf.text("DATOS DEL CLIENTE", margin, y);
+            y += 4;
 
-  pdf.setFillColor(253, 248, 244);
-  pdf.setDrawColor(240, 223, 229);
-  pdf.setLineWidth(0.4);
-  pdf.roundedRect(margin, y, inner, 28, 2.5, 2.5, "FD");
+            pdf.setFillColor(253, 248, 244);
+            pdf.setDrawColor(240, 223, 229);
+            pdf.setLineWidth(0.4);
+            pdf.roundedRect(margin, y, inner, 28, 2.5, 2.5, "FD");
 
-  /* Nombre */
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8);
-  pdf.setTextColor(154, 127, 135);
-  pdf.text("Nombre completo", margin + 5, y + 7);
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(44, 31, 38);
-  pdf.text((data.name + " " + data.lastname).substring(0, 38), margin + 5, y + 13);
+            /* Nombre */
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(8);
+            pdf.setTextColor(154, 127, 135);
+            pdf.text("Nombre completo", margin + 5, y + 7);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(10);
+            pdf.setTextColor(44, 31, 38);
+            pdf.text((data.name + " " + data.lastname).substring(0, 38), margin + 5, y + 13);
 
-  /* Telefono */
-  const col2 = margin + inner / 2 + 3;
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8);
-  pdf.setTextColor(154, 127, 135);
-  pdf.text("Telefono / WhatsApp", col2, y + 7);
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(44, 31, 38);
-  pdf.text(data.phone.substring(0, 20), col2, y + 13);
+            /* Telefono */
+            const col2 = margin + inner / 2 + 3;
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(8);
+            pdf.setTextColor(154, 127, 135);
+            pdf.text("Telefono / WhatsApp", col2, y + 7);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(10);
+            pdf.setTextColor(44, 31, 38);
+            pdf.text(data.phone.substring(0, 20), col2, y + 13);
 
-  /* Direccion */
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8);
-  pdf.setTextColor(154, 127, 135);
-  pdf.text("Direccion de entrega", margin + 5, y + 19);
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(9.5);
-  pdf.setTextColor(44, 31, 38);
-  const addrLine = pdf.splitTextToSize(data.address, inner - 10);
-  pdf.text(addrLine[0] || "", margin + 5, y + 25);
+            /* Direccion */
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(8);
+            pdf.setTextColor(154, 127, 135);
+            pdf.text("Direccion de entrega", margin + 5, y + 19);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(9.5);
+            pdf.setTextColor(44, 31, 38);
+            const addrLine = pdf.splitTextToSize(data.address, inner - 10);
+            pdf.text(addrLine[0] || "", margin + 5, y + 25);
 
-  y += 35;
+            y += 35;
 
-  /* ---- Nota especial ---- */
-  if (data.note) {
-    pdf.setFillColor(255, 248, 231);
-    pdf.setDrawColor(212, 167, 106);
-    pdf.setLineWidth(0.4);
-    pdf.roundedRect(margin, y, inner, 14, 2, 2, "FD");
-    pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(8);
-    pdf.setTextColor(196, 120, 138);
-    pdf.text("Nota especial:", margin + 5, y + 6);
-    pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(90, 69, 53);
-    const noteLines = pdf.splitTextToSize(data.note, inner - 35);
-    pdf.text(noteLines[0] || "", margin + 32, y + 6);
-    y += 20;
-  }
+            /* ---- Nota especial ---- */
+            if (data.note) {
+                pdf.setFillColor(255, 248, 231);
+                pdf.setDrawColor(212, 167, 106);
+                pdf.setLineWidth(0.4);
+                pdf.roundedRect(margin, y, inner, 14, 2, 2, "FD");
+                pdf.setFont("helvetica", "bold");
+                pdf.setFontSize(8);
+                pdf.setTextColor(196, 120, 138);
+                pdf.text("Nota especial:", margin + 5, y + 6);
+                pdf.setFont("helvetica", "normal");
+                pdf.setTextColor(90, 69, 53);
+                const noteLines = pdf.splitTextToSize(data.note, inner - 35);
+                pdf.text(noteLines[0] || "", margin + 32, y + 6);
+                y += 20;
+            }
 
-  /* ---- Pago ---- */
-  pdf.setFillColor(235, 248, 241);
-  pdf.setDrawColor(100, 180, 130);
-  pdf.setLineWidth(0.4);
-  pdf.roundedRect(margin, y, inner, 20, 2.5, 2.5, "FD");
+            /* ---- Pago ---- */
+            pdf.setFillColor(235, 248, 241);
+            pdf.setDrawColor(100, 180, 130);
+            pdf.setLineWidth(0.4);
+            pdf.roundedRect(margin, y, inner, 20, 2.5, 2.5, "FD");
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(8);
-  pdf.setTextColor(22, 110, 60);
-  pdf.text("PAGO: Transferencia Bancaria - Banco Industrial", margin + 5, y + 7);
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(8);
+            pdf.setTextColor(22, 110, 60);
+            pdf.text("PAGO: Transferencia Bancaria - Banco Industrial", margin + 5, y + 7);
 
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8.5);
-  pdf.setTextColor(30, 80, 50);
-  pdf.text("Titular: " + BANK_HOLDER + "   |   Cuenta: " + BANK_ACCOUNT + "   |   Monetaria", margin + 5, y + 13.5);
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(8.5);
+            pdf.setTextColor(30, 80, 50);
+            pdf.text("Titular: " + BANK_HOLDER + "   |   Cuenta: " + BANK_ACCOUNT + "   |   Monetaria", margin + 5, y + 13.5);
 
-  if (data.comprobante) {
-    pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(22, 110, 60);
-    pdf.text("Comprobante No.: " + data.comprobante, margin + 5, y + 19);
-  }
+            if (data.comprobante) {
+                pdf.setFont("helvetica", "bold");
+                pdf.setTextColor(22, 110, 60);
+                pdf.text("Comprobante No.: " + data.comprobante, margin + 5, y + 19);
+            }
 
-  y += (data.comprobante ? 27 : 26);
+            y += (data.comprobante ? 27 : 26);
 
-  /* ---- Productos ---- */
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(7.5);
-  pdf.setTextColor(155, 125, 200);
-  pdf.text("DETALLE DEL PEDIDO", margin, y);
-  y += 4;
+            /* ---- Productos ---- */
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(7.5);
+            pdf.setTextColor(155, 125, 200);
+            pdf.text("DETALLE DEL PEDIDO", margin, y);
+            y += 4;
 
-  /* Cabecera tabla */
-  pdf.setFillColor(196, 120, 138);
-  pdf.rect(margin, y, inner, 8, "F");
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(8);
-  pdf.setTextColor(255, 255, 255);
-  pdf.text("PRODUCTO", margin + 4, y + 5.5);
-  pdf.text("CANT.", margin + 105, y + 5.5);
-  pdf.text("PRECIO", margin + 120, y + 5.5);
-  pdf.text("SUBTOTAL", W - margin - 4, y + 5.5, { align: "right" });
-  y += 8;
+            /* Cabecera tabla */
+            pdf.setFillColor(196, 120, 138);
+            pdf.rect(margin, y, inner, 8, "F");
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(8);
+            pdf.setTextColor(255, 255, 255);
+            pdf.text("PRODUCTO", margin + 4, y + 5.5);
+            pdf.text("CANT.", margin + 105, y + 5.5);
+            pdf.text("PRECIO", margin + 120, y + 5.5);
+            pdf.text("SUBTOTAL", W - margin - 4, y + 5.5, { align: "right" });
+            y += 8;
 
-  /* Filas */
-  data.orderItems.forEach((item, i) => {
-    const rH = 9;
-    pdf.setFillColor(i % 2 === 0 ? 255 : 253, i % 2 === 0 ? 255 : 248, i % 2 === 0 ? 255 : 244);
-    pdf.rect(margin, y, inner, rH, "F");
-    pdf.setDrawColor(240, 223, 229);
-    pdf.setLineWidth(0.3);
-    pdf.line(margin, y + rH, W - margin, y + rH);
+            /* Filas */
+            data.orderItems.forEach((item, i) => {
+                const rH = 9;
+                pdf.setFillColor(i % 2 === 0 ? 255 : 253, i % 2 === 0 ? 255 : 248, i % 2 === 0 ? 255 : 244);
+                pdf.rect(margin, y, inner, rH, "F");
+                pdf.setDrawColor(240, 223, 229);
+                pdf.setLineWidth(0.3);
+                pdf.line(margin, y + rH, W - margin, y + rH);
 
-    pdf.setFont("helvetica", "normal");
-    pdf.setFontSize(9);
-    pdf.setTextColor(44, 31, 38);
-    pdf.text(item.nombre.substring(0, 44), margin + 4, y + 6);
-    pdf.text(String(item.qty), margin + 107, y + 6);
-    pdf.text("Q " + item.precio.toFixed(2), margin + 120, y + 6);
-    pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(155, 125, 200);
-    pdf.text("Q " + item.subtotal.toFixed(2), W - margin - 4, y + 6, { align: "right" });
-    y += rH;
-  });
+                pdf.setFont("helvetica", "normal");
+                pdf.setFontSize(9);
+                pdf.setTextColor(44, 31, 38);
+                pdf.text(item.nombre.substring(0, 44), margin + 4, y + 6);
+                pdf.text(String(item.qty), margin + 107, y + 6);
+                pdf.text("Q " + item.precio.toFixed(2), margin + 120, y + 6);
+                pdf.setFont("helvetica", "bold");
+                pdf.setTextColor(155, 125, 200);
+                pdf.text("Q " + item.subtotal.toFixed(2), W - margin - 4, y + 6, { align: "right" });
+                y += rH;
+            });
 
-  y += 5;
+            y += 5;
 
-  /* ---- Total ---- */
-  const tBoxW = 60;
-  const tBoxX = W - margin - tBoxW;
-  pdf.setFillColor(245, 240, 255);
-  pdf.setDrawColor(155, 125, 200);
-  pdf.setLineWidth(0.5);
-  pdf.roundedRect(tBoxX, y, tBoxW, 18, 3, 3, "FD");
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(7.5);
-  pdf.setTextColor(154, 127, 135);
-  pdf.text("TOTAL A PAGAR", tBoxX + tBoxW / 2, y + 6, { align: "center" });
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(15);
-  pdf.setTextColor(155, 125, 200);
-  pdf.text("Q " + data.total.toFixed(2), tBoxX + tBoxW / 2, y + 15, { align: "center" });
+            /* ---- Total ---- */
+            const tBoxW = 60;
+            const tBoxX = W - margin - tBoxW;
+            pdf.setFillColor(245, 240, 255);
+            pdf.setDrawColor(155, 125, 200);
+            pdf.setLineWidth(0.5);
+            pdf.roundedRect(tBoxX, y, tBoxW, 18, 3, 3, "FD");
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(7.5);
+            pdf.setTextColor(154, 127, 135);
+            pdf.text("TOTAL A PAGAR", tBoxX + tBoxW / 2, y + 6, { align: "center" });
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(15);
+            pdf.setTextColor(155, 125, 200);
+            pdf.text("Q " + data.total.toFixed(2), tBoxX + tBoxW / 2, y + 15, { align: "center" });
 
-  y += 26;
+            y += 26;
 
-  /* ---- Footer ---- */
-  pdf.setDrawColor(240, 223, 229);
-  pdf.setLineWidth(0.4);
-  pdf.line(margin, y, W - margin, y);
-  y += 6;
+            /* ---- Footer ---- */
+            pdf.setDrawColor(240, 223, 229);
+            pdf.setLineWidth(0.4);
+            pdf.line(margin, y, W - margin, y);
+            y += 6;
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(196, 120, 138);
-  pdf.text("Gracias por tu compra con Detalles de Amor", W / 2, y, { align: "center" });
-  y += 5.5;
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(10);
+            pdf.setTextColor(196, 120, 138);
+            pdf.text("Gracias por tu compra con Detalles de Amor", W / 2, y, { align: "center" });
+            y += 5.5;
 
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8);
-  pdf.setTextColor(154, 127, 135);
-  pdf.text("Hecho con ternura para ti  |  Guatemala", W / 2, y, { align: "center" });
-  y += 4.5;
-  pdf.text("Para consultas: +502 5563 0559", W / 2, y, { align: "center" });
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(8);
+            pdf.setTextColor(154, 127, 135);
+            pdf.text("Hecho con ternura para ti  |  Guatemala", W / 2, y, { align: "center" });
+            y += 4.5;
+            pdf.text("Para consultas: +502 5563 0559", W / 2, y, { align: "center" });
 
-  return pdf.output("blob");
-}
+            return pdf.output("blob");
+        }
 
-function escHtml(str) {
-  return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
-}
+        function escHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
 
-/* ===== WHATSAPP & DESCARGA ===== */
-$("sendWhatsappBtn").onclick = sendWhatsapp;
-$("downloadPdfBtn").onclick  = downloadPDF;
-$("closeSuccessBtn").onclick = () => {
-  $("successOverlay").classList.remove("open");
-  document.body.style.overflow = "";
-};
+        /* ===== WHATSAPP & DESCARGA ===== */
+        $("sendWhatsappBtn").onclick = sendWhatsapp;
+        $("downloadPdfBtn").onclick = downloadPDF;
+        $("closeSuccessBtn").onclick = () => {
+            $("successOverlay").classList.remove("open");
+            document.body.style.overflow = "";
+        };
 
-function sendWhatsapp() {
-  if (!currentOrderData) return;
-  const d = currentOrderData;
+        function sendWhatsapp() {
+            if (!currentOrderData) return;
+            const d = currentOrderData;
 
-  const itemsList = d.orderItems.map(i =>
-    `• ${i.nombre} × ${i.qty} = Q ${i.subtotal.toFixed(2)}`
-  ).join("\n");
+            const itemsList = d.orderItems.map(i =>
+                `• ${i.nombre} × ${i.qty} = Q ${i.subtotal.toFixed(2)}`
+            ).join("\n");
 
-  const msg =
-    `*✦ NUEVO PEDIDO — Detalles de Amor*\n` +
-    `*Boleta:* ${d.orderNum}\n` +
-    `*Fecha:* ${d.dateStr} ${d.timeStr}\n\n` +
-    `*👤 Cliente:* ${d.name} ${d.lastname}\n` +
-    `*📱 Teléfono:* ${d.phone}\n` +
-    `*📍 Dirección:* ${d.address}\n` +
-    (d.note ? `*📝 Nota:* ${d.note}\n` : "") +
-    `\n*🛍️ Productos:*\n${itemsList}\n\n` +
-    `*💰 TOTAL: Q ${d.total.toFixed(2)}*\n\n` +
-    `*🏦 Pago:* Transferencia Banco Industrial\n` +
-    `*Cuenta:* ${BANK_ACCOUNT}  |  ${BANK_HOLDER}\n` +
-    (d.comprobante ? `*Comprobante No.:* ${d.comprobante}\n` : "");
+            const msg =
+                `*✦ NUEVO PEDIDO — Detalles de Amor*\n` +
+                `*Boleta:* ${d.orderNum}\n` +
+                `*Fecha:* ${d.dateStr} ${d.timeStr}\n\n` +
+                `*👤 Cliente:* ${d.name} ${d.lastname}\n` +
+                `*📱 Teléfono:* ${d.phone}\n` +
+                `*📍 Dirección:* ${d.address}\n` +
+                (d.note ? `*📝 Nota:* ${d.note}\n` : "") +
+                `\n*🛍️ Productos:*\n${itemsList}\n\n` +
+                `*💰 TOTAL: Q ${d.total.toFixed(2)}*\n\n` +
+                `*🏦 Pago:* Transferencia Banco Industrial\n` +
+                `*Cuenta:* ${BANK_ACCOUNT}  |  ${BANK_HOLDER}\n` +
+                (d.comprobante ? `*Comprobante No.:* ${d.comprobante}\n` : "");
 
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
-  downloadPDF();
-}
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+            downloadPDF();
+        }
 
-function downloadPDF() {
-  if (!currentPdfBlob) {
-    showToast("La boleta no está disponible", "⚠️");
-    return;
-  }
-  const url = URL.createObjectURL(currentPdfBlob);
-  const a   = document.createElement("a");
-  a.href    = url;
-  a.download = `Boleta_${currentOrderData ? currentOrderData.orderNum : "pedido"}.pdf`;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1500);
-}
+        function downloadPDF() {
+            if (!currentPdfBlob) {
+                showToast("La boleta no está disponible", "⚠️");
+                return;
+            }
+            const url = URL.createObjectURL(currentPdfBlob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Boleta_${currentOrderData ? currentOrderData.orderNum : "pedido"}.pdf`;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }
 
-/* ===== FILTROS ===== */
-document.querySelectorAll(".cat-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentCat = btn.dataset.cat;
-    refreshGrid();
-  });
-});
+        /* ===== FILTROS ESCRITORIO ===== */
+        document.querySelectorAll(".nav-cats .cat-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Sincronizar botones
+                document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                document.querySelectorAll(`.cat-btn[data-cat="${btn.dataset.cat}"]`)
+                    .forEach(b => b.classList.add("active"));
 
-$("searchInput").addEventListener("input", e => {
-  searchTerm = e.target.value;
-  refreshGrid();
-});
+                currentCat = btn.dataset.cat;
+                refreshGrid();
+            });
+        });
 
-/* ===== ESC KEY ===== */
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    closeProductModal();
-    $("cartOverlay").classList.remove("open");
-    closeCheckout();
-    $("successOverlay").classList.remove("open");
-    document.body.style.overflow = "";
-  }
-});
+        $("searchInput").addEventListener("input", e => {
+            searchTerm = e.target.value;
+            // Sincronizar input móvil
+            const drawerSearch = $("drawerSearchInput");
+            if (drawerSearch) drawerSearch.value = searchTerm;
+            refreshGrid();
+        });
 
-/* ===== INIT ===== */
-loadCart();
-refreshCartUI();
-refreshGrid();
-</script>
+
+        /* ===== MOBILE MENU LOGIC ===== */
+        const mobileMenuBtn = $("mobileMenuBtn");
+        const mobileDrawer = $("mobileDrawer");
+
+        if (mobileMenuBtn && mobileDrawer) {
+            mobileMenuBtn.addEventListener("click", () => {
+                mobileMenuBtn.classList.toggle("open");
+                mobileDrawer.classList.toggle("open");
+
+                // Cambiar ícono entre barras y X
+                const icon = mobileMenuBtn.querySelector("i");
+                if (mobileMenuBtn.classList.contains("open")) {
+                    icon.classList.replace("fa-bars", "fa-xmark");
+                } else {
+                    icon.classList.replace("fa-xmark", "fa-bars");
+                }
+            });
+        }
+
+        // Búsqueda en móvil
+        $("drawerSearchInput")?.addEventListener("input", e => {
+            searchTerm = e.target.value;
+            // Sincronizar input de escritorio
+            $("searchInput").value = searchTerm;
+            refreshGrid();
+        });
+
+        // Filtros en móvil
+        document.querySelectorAll(".mobile-cat-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Sincronizar botones
+                document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                document.querySelectorAll(`.cat-btn[data-cat="${btn.dataset.cat}"]`)
+                    .forEach(b => b.classList.add("active"));
+
+                currentCat = btn.dataset.cat;
+                refreshGrid();
+
+                // Cerrar el menú automáticamente al seleccionar
+                mobileMenuBtn.click();
+            });
+        });
+
+        /* ===== ESC KEY ===== */
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") {
+                closeProductModal();
+                $("cartOverlay").classList.remove("open");
+                closeCheckout();
+                $("successOverlay").classList.remove("open");
+                closeLegalModal();
+                document.body.style.overflow = "";
+            }
+        });
+
+        /* ===== DARK MODE ===== */
+        (function () {
+            const btn = $("darkToggle");
+            const icon = btn.querySelector("i");
+            const saved = localStorage.getItem("theme");
+            // Respect system preference if no saved setting
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const isDark = saved ? saved === "dark" : prefersDark;
+
+            function setTheme(dark) {
+                document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+                icon.className = dark ? "fas fa-sun" : "fas fa-moon";
+                localStorage.setItem("theme", dark ? "dark" : "light");
+            }
+
+            setTheme(isDark);
+
+            btn.addEventListener("click", () => {
+                const currentlyDark = document.documentElement.getAttribute("data-theme") === "dark";
+                setTheme(!currentlyDark);
+            });
+        })();
+
+        /* ===== LEGAL MODALS ===== */
+        const LEGAL_CONTENT = {
+            privacy: `
+    <h2>Política de Privacidad</h2>
+    <span class="legal-date">Última actualización: enero 2025</span>
+    <div class="legal-highlight"><i class="fas fa-shield-heart"></i><span>Tu privacidad es importante para nosotros. Esta política explica cómo recopilamos y usamos tu información.</span></div>
+    <h3>1. Responsable del tratamiento</h3>
+    <p>Detalles de Amor, con domicilio en Guatemala, Ciudad de Guatemala. Contacto: +502 5563 0559.</p>
+    <h3>2. Información que recopilamos</h3>
+    <p>Recopilamos únicamente los datos que nos proporcionás voluntariamente al realizar un pedido:</p>
+    <ul>
+      <li>Nombre y apellido</li>
+      <li>Número de teléfono / WhatsApp</li>
+      <li>Dirección de entrega</li>
+      <li>Número de comprobante de pago (opcional)</li>
+    </ul>
+    <h3>3. Finalidad del tratamiento</h3>
+    <p>Usamos tus datos exclusivamente para:</p>
+    <ul>
+      <li>Procesar y confirmar tu pedido</li>
+      <li>Coordinar la entrega de tus productos</li>
+      <li>Enviarte tu boleta de compra</li>
+      <li>Contactarte ante cualquier inconveniente con tu pedido</li>
+    </ul>
+    <h3>4. Base legal</h3>
+    <p>El tratamiento se basa en la ejecución del contrato de compraventa (tu pedido) conforme a la <strong>Ley de Protección de Datos Personales de Guatemala (Decreto 57-2008)</strong>.</p>
+    <h3>5. Conservación de datos</h3>
+    <p>Tus datos se conservan durante el tiempo necesario para completar el pedido y por un período máximo de 1 año para fines contables.</p>
+    <h3>6. No compartimos tus datos</h3>
+    <p>No vendemos, alquilamos ni compartimos tu información personal con terceros, salvo obligación legal. Usamos WhatsApp (Meta Platforms) para comunicarnos; sus políticas aplican a dicha comunicación.</p>
+    <h3>7. Tus derechos</h3>
+    <p>Tenés derecho a acceder, rectificar, cancelar u oponerte al tratamiento de tus datos. Para ejercerlos escribinos al +502 5563 0559.</p>
+    <h3>8. Cookies</h3>
+    <p>Usamos cookies técnicas estrictamente necesarias para el funcionamiento de la tienda (carrito de compras, preferencias de tema). Podés gestionar las cookies desde la <button class="cookie-more" onclick="openLegalModal('cookies')">Política de Cookies</button>.</p>
+  `,
+            terms: `
+    <h2>Términos y Condiciones</h2>
+    <span class="legal-date">Última actualización: enero 2025</span>
+    <div class="legal-highlight"><i class="fas fa-file-contract"></i><span>Al realizar una compra aceptás estos términos. Leelos antes de confirmar tu pedido.</span></div>
+    <h3>1. Identificación del vendedor</h3>
+    <p>Detalles de Amor es una empresa guatemalteca de venta de regalos y artículos decorativos. Contacto: +502 5563 0559 (WhatsApp).</p>
+    <h3>2. Proceso de compra</h3>
+    <ul>
+      <li>Seleccionás los productos y completás el formulario de pedido.</li>
+      <li>Se genera una boleta de compra con número único.</li>
+      <li>Realizás la transferencia bancaria al número de cuenta indicado.</li>
+      <li>Enviás el comprobante por WhatsApp para confirmar.</li>
+      <li>Coordinamos la entrega una vez confirmado el pago.</li>
+    </ul>
+    <h3>3. Precios</h3>
+    <p>Todos los precios están expresados en Quetzales guatemaltecos (GTQ). Los precios incluyen el costo del producto. El costo de envío se informa al confirmar el pedido según tu ubicación.</p>
+    <h3>4. Pago</h3>
+    <p>Aceptamos transferencias bancarias a Banco Industrial. El pedido se confirma únicamente al verificar el pago. No procesamos pagos en efectivo a través del sitio.</p>
+    <h3>5. Disponibilidad de stock</h3>
+    <p>La disponibilidad mostrada es en tiempo real. En caso de agotarse un producto tras confirmar tu pago, te contactaremos para ofrecerte un sustituto o reembolso.</p>
+    <h3>6. Entregas</h3>
+    <p>Realizamos entregas en Guatemala. El tiempo y costo de entrega varía según la zona. Nos comprometemos a coordinar la entrega en un plazo máximo de 3 días hábiles tras confirmar el pago.</p>
+    <h3>7. Devoluciones y cambios</h3>
+    <p>Aceptamos cambios o devoluciones dentro de los <strong>3 días calendario</strong> siguientes a la recepción, siempre que el producto esté en perfectas condiciones, sin uso y en su empaque original. Productos personalizados no tienen devolución salvo defecto de fabricación.</p>
+    <h3>8. Limitación de responsabilidad</h3>
+    <p>Detalles de Amor no se responsabiliza por demoras causadas por fuerza mayor, desastres naturales o huelgas. Las imágenes de los productos son referenciales; el color puede variar ligeramente por condiciones de pantalla.</p>
+    <h3>9. Ley aplicable</h3>
+    <p>Estos términos se rigen por las leyes de la República de Guatemala, en particular el <strong>Código de Comercio (Decreto 2-70)</strong> y la <strong>Ley de Protección al Consumidor (Decreto 006-2003)</strong>.</p>
+    <h3>10. Contacto</h3>
+    <p>Para consultas, reclamos o garantías: <a href="https://wa.me/50255630559">WhatsApp +502 5563 0559</a>.</p>
+  `,
+            cookies: `
+    <h2>Política de Cookies</h2>
+    <span class="legal-date">Última actualización: enero 2025</span>
+    <div class="legal-highlight"><i class="fas fa-cookie-bite"></i><span>Usamos cookies técnicas mínimas para que la tienda funcione correctamente.</span></div>
+    <h3>¿Qué son las cookies?</h3>
+    <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitás un sitio web. Permiten recordar preferencias y estado de sesión.</p>
+    <h3>Cookies que utilizamos</h3>
+    <ul>
+      <li><strong>dda_cart_v3</strong> — Guarda el contenido de tu carrito de compras (localStorage). Técnica, esencial.</li>
+      <li><strong>theme</strong> — Guarda tu preferencia de modo claro/oscuro (localStorage). Técnica, esencial.</li>
+      <li><strong>dda_cookies</strong> — Registra si ya aceptaste o rechazaste esta política. Técnica, esencial.</li>
+    </ul>
+    <h3>Cookies de terceros</h3>
+    <p>No utilizamos cookies de rastreo, publicidad ni analítica de terceros. Las fuentes de Google Fonts y Font Awesome pueden establecer cookies propias conforme a sus políticas.</p>
+    <h3>¿Cómo gestionar las cookies?</h3>
+    <p>Podés bloquear o eliminar las cookies desde la configuración de tu navegador:</p>
+    <ul>
+      <li>Chrome: Configuración → Privacidad → Cookies</li>
+      <li>Firefox: Opciones → Privacidad → Historial</li>
+      <li>Safari: Preferencias → Privacidad</li>
+    </ul>
+    <p>Bloquear las cookies técnicas puede afectar el funcionamiento del carrito y las preferencias de tema.</p>
+    <h3>Consentimiento</h3>
+    <p>Al hacer clic en "Aceptar" en el banner de cookies, consentís el uso descrito. Podés retirar tu consentimiento limpiando el almacenamiento local del navegador en cualquier momento.</p>
+  `
+        };
+
+        function openLegalModal(type) {
+            $("legalContent").innerHTML = LEGAL_CONTENT[type] || "";
+            $("legalOverlay").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
+        function closeLegalModal() {
+            $("legalOverlay").classList.remove("open");
+            document.body.style.overflow = "";
+        }
+        $("legalCloseBtn").addEventListener("click", closeLegalModal);
+        $("legalOverlay").addEventListener("click", e => { if (e.target === $("legalOverlay")) closeLegalModal(); });
+
+        /* ===== COOKIE BANNER ===== */
+        (function () {
+            const consent = localStorage.getItem("dda_cookies");
+            if (!consent) {
+                setTimeout(() => $("cookieBanner").classList.add("show"), 1200);
+            }
+            $("cookieAccept").addEventListener("click", () => {
+                localStorage.setItem("dda_cookies", "accepted");
+                $("cookieBanner").classList.remove("show");
+            });
+            $("cookieReject").addEventListener("click", () => {
+                localStorage.setItem("dda_cookies", "rejected");
+                $("cookieBanner").classList.remove("show");
+            });
+        })();
+
+        /* ===== INIT ===== */
+        loadCart();
+        refreshCartUI();
+        refreshGrid();
+    </script>
 </body>
+
 </html>
