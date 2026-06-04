@@ -2731,6 +2731,12 @@
                 <input type="tel" id="clientPhone" class="form-input" placeholder="+502 0000 0000" autocomplete="tel">
             </div>
             <div class="form-group">
+                <label for="clientEmail">Correo electrónico <span style="color:var(--c-muted);font-weight:400;">(para
+                        recibir tu confirmación)</span></label>
+                <input type="email" id="clientEmail" class="form-input" placeholder="tu@correo.com"
+                    autocomplete="email">
+            </div>
+            <div class="form-group">
                 <label for="clientAddress">Dirección de entrega *</label>
                 <input type="text" id="clientAddress" class="form-input" placeholder="Zona, calle, número..."
                     autocomplete="street-address">
@@ -2881,6 +2887,9 @@
         ];
 
         const WHATSAPP_NUMBER = "50255630559";
+
+        // ⚙️ Pegá acá la URL de tu Google Apps Script desplegado
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk9aYfrLFE0mS-ugarkomlwGIILzh1WTsUpnkn_WypdaWlcLuUi9B4yYh-y3EN5t84/exec";
 
         /* ===== DATOS BANCO INDUSTRIAL ===== */
         const BANK_ACCOUNT = "000-000000-0";  // ← Cambia por tu número de cuenta real
@@ -3228,6 +3237,7 @@
             const name = $("clientName").value.trim();
             const lastname = $("clientLastname").value.trim();
             const phone = $("clientPhone").value.trim();
+            const email = $("clientEmail").value.trim();
             const address = $("clientAddress").value.trim();
             const note = $("clientNote").value.trim();
             const comprobante = $("clientComprobante").value.trim();
@@ -3250,18 +3260,32 @@
             const dateStr = now.toLocaleDateString("es-GT", { day: "2-digit", month: "long", year: "numeric" });
             const timeStr = now.toLocaleTimeString("es-GT", { hour: "2-digit", minute: "2-digit" });
 
-            currentOrderData = { orderNum, name, lastname, phone, address, note, comprobante, orderItems, total, dateStr, timeStr };
+            currentOrderData = { orderNum, name, lastname, phone, email, address, note, comprobante, orderItems, total, dateStr, timeStr };
 
             // Mostrar loading
             $("loadingOverlay").classList.add("open");
             closeCheckout();
 
+            // Generar PDF
             try {
                 const blob = await generatePDF(currentOrderData);
                 currentPdfBlob = blob;
             } catch (err) {
                 console.error("PDF error:", err);
                 currentPdfBlob = null;
+            }
+
+            // Enviar emails vía Google Apps Script (no bloquea si falla)
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(currentOrderData),
+                });
+                if (email) showToast("¡Confirmación enviada a " + email + "!", "✉️");
+            } catch (err) {
+                console.warn("Apps Script no disponible:", err);
             }
 
             $("loadingOverlay").classList.remove("open");
@@ -3277,7 +3301,7 @@
             document.body.style.overflow = "hidden";
 
             // Limpiar form
-            ["clientName", "clientLastname", "clientPhone", "clientAddress", "clientNote", "clientComprobante"].forEach(id => { $(id).value = ""; });
+            ["clientName", "clientLastname", "clientPhone", "clientEmail", "clientAddress", "clientNote", "clientComprobante"].forEach(id => { $(id).value = ""; });
         }
 
         /* ===== GENERAR PDF CON jsPDF PURO (sin html2canvas) ===== */
